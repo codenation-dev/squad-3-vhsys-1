@@ -1,9 +1,9 @@
-## Instalação do Projeto
+# Instalação do Projeto
 
-# Fazer download ou clonar o projeto em uma pasta
-# Criar a Base de dados api_erros
-# Com o prompt de comando ou terminal na raiz do projeto -> composer install
-# Para criar as tabelas na Base de Dados -> php artisan migrate
+## Fazer download ou clonar o projeto em uma pasta
+## Criar a Base de dados api_erros
+## Com o prompt de comando ou terminal na raiz do projeto -> composer install
+## Para criar as tabelas na Base de Dados -> php artisan migrate
 
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
