@@ -39,6 +39,9 @@ class ErroController extends Controller
         try{
 
             $data['usuario_id'] = auth('api')->user()->id;
+            $data['usuario_name'] = auth('api')->user()->name;
+            $data['status'] = 'ativo';
+            $data['data'] = date('Y-m-d');
 
             $erro = $this->erro->create($data);
 
@@ -49,7 +52,8 @@ class ErroController extends Controller
         } catch (\Exception $e) {
             return response()->json( [
                 'Erro' => 'Não foi possível cadastrar o log de erro.',
-                'Msg' => 'Verifique os dados e tente novamente!']);
+                'Msg' => 'Verifique os dados e tente novamente!'
+            ], 400);
         }
     }
 
@@ -69,7 +73,8 @@ class ErroController extends Controller
             ], 200);
 
         } catch (\Exception $e) {
-            return response()->json(['Erro' => 'Log não encontrado!']);
+            return response()->json(['Erro' => 'Log não existe ou pertence a outro usuário!'
+            ], 400);
         }
     }
 
@@ -95,7 +100,10 @@ class ErroController extends Controller
             ], 200);
 
         } catch (\Exception $e) {
-            return response()->json(['Erro' => 'Log não encontrado ou erro ao atualizar, verifique os dados e tente novamente!']);
+            return response()->json([
+                'Erro' => 'Erro ao atualizar: Log não existe ou pertence a outro usuário!',
+                'Msg' => 'Verifique os dados e tente novamente!'
+            ], 400);
         }
     }
 
@@ -112,7 +120,9 @@ class ErroController extends Controller
             ], 200);
 
         } catch (\Exception $e) {
-            return response()->json(['Erro' => 'Log não encontrado!']);
+            return response()->json([
+                'Erro' => 'Log não encontrado ou pertence a outro usuário!'
+            ], 400);
 
         }
     }
