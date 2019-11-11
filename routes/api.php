@@ -34,9 +34,8 @@ Route::namespace('Api')->group(function() {
 
 
         // Rotas para os usuários
-        Route::name('users.')->prefix('users')->group(function() {
-            Route::resource('/', 'UserController');
-
+        Route::name('users.')->group(function() {
+            Route::resource('users', 'UserController');
         });
     });
 
