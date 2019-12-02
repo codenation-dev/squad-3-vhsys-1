@@ -15,15 +15,21 @@ class ErroController extends Controller
 
     public function __construct(Erro $erro)
     {
-
         $this->erro = $erro;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $erros = auth('api')->user()->erro();
 
-        return response()->json($erros->paginate(10), 200 );
+            if($request->has('filters')) {
+                $filters = explode(';', $request->get('filters'));
+                foreach($filters as $filter) {
+                    $result = explode(':', $filter);
+                    $erros = $erros->where($result[0], $result[1], $result[2]);
+                }
+            }
+            return response()->json($erros->paginate(10), 200 );
     }
 
     /**
@@ -37,7 +43,6 @@ class ErroController extends Controller
         $data = $request->all();
 
         try{
-
             $data['usuario_id'] = auth('api')->user()->id;
             $data['usuario_name'] = auth('api')->user()->name;
             $data['status'] = 'ativo';
@@ -74,7 +79,7 @@ class ErroController extends Controller
 
         } catch (\Exception $e) {
             return response()->json(['Erro' => 'Log não existe ou pertence a outro usuário!'
-            ], 400);
+            ], 404);
         }
     }
 
@@ -123,7 +128,6 @@ class ErroController extends Controller
             return response()->json([
                 'Erro' => 'Log não encontrado ou pertence a outro usuário!'
             ], 400);
-
         }
     }
 }

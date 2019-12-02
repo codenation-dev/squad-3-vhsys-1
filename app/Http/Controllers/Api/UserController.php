@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-
     private $user;
 
     public function __construct(User $user)
@@ -45,7 +44,6 @@ class UserController extends Controller
         }
 
         try{
-
             $data['password'] = bcrypt($data['password']);
             $user = $this->user->create($data);
 
@@ -56,7 +54,7 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return response()->json( [
                 'Erro' => 'Erro ao cadastrar o usuário, verifique os dados e tente novamente!',
-                'Msg' => 'Talvez esse email já esteja cadastrado!'
+                'Msg' => 'Talvez o email informado já esteja cadastrado!'
             ], 400);
         }
     }

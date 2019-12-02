@@ -42,6 +42,5 @@ class LoginJwtController extends Controller
             'Msg:' => 'Token atualizado!',
             'token' => $token
         ], 200);
-
     }
 }
