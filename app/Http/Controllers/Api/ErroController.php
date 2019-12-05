@@ -20,16 +20,44 @@ class ErroController extends Controller
 
     public function index(Request $request)
     {
-        $erros = auth('api')->user()->erro();
+        $userId     = auth('api')->user()->id;
+        $ambience   = $request->get('ambiente');
+        $ordination  = $request->get('ordenacao');
+        $search      = $request->get('busca');
 
-            if($request->has('filters')) {
-                $filters = explode(';', $request->get('filters'));
-                foreach($filters as $filter) {
-                    $result = explode(':', $filter);
-                    $erros = $erros->where($result[0], $result[1], $result[2]);
-                }
-            }
-            return response()->json($erros->paginate(10), 200 );
+        $filtros = [
+            ['status',      '=',    'ativo'],
+            ['usuario_id',  '=',    $userId]];
+
+        if ($ambience !== null)
+            array_push($filtros, ["ambiente", '=', $ambience]);
+
+        $order = "data";
+        if ($ordination === "1")
+            $order = "nivel";
+
+        //if ($busca !== null)
+   
+   
+        $erros = Erro::where($filtros)
+            ->orderBy($order, 'asc');
+
+        //$erros = Erro::where('usuario_id', $userId);
+        //->orderBy('name', 'desc')
+        //->take(10)
+        //->get();
+
+
+        // $erros = auth('api')->user()->erro();
+
+        //     if($request->has('filters')) {
+        //         $filters = explode(';', $request->get('filters'));
+        //         foreach($filters as $filter) {
+        //             $result = explode(':', $filter);
+        //             $erros = $erros->where( $result[0], $result[1], $result[2]);
+        //         }
+        //     }
+        return response()->json($erros->paginate(10), 200 );
     }
 
     /**
@@ -57,7 +85,7 @@ class ErroController extends Controller
         } catch (\Exception $e) {
             return response()->json( [
                 'Erro' => 'Não foi possível cadastrar o log de erro.',
-                'Msg' => 'Verifique os dados e tente novamente!'
+                'Msg' => 'Verifique os dados e tente novamente!' . $e->getMessage()
             ], 400);
         }
     }
