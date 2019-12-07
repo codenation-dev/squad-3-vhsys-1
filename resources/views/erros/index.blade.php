@@ -55,7 +55,7 @@
                         <tbody>
 
                             @foreach($registros as $registro)
-                                @if(Auth::user()->id == $registro->usuario_id || Auth::user()->admin == 1)
+                                @if(Auth::user()->id == ($registro->usuario_id || Auth::user()->admin == 1) && $registro->status === 'Ativo')
 
                                 <tr>
                                     <td>{{$registro->id}}</td>
@@ -71,8 +71,8 @@
 
                                     @if(Auth::user()->admin == 1)
                                         <td>
-                                            <a class="btn blue-grey lighten-1" style="margin-bottom:5px; font-size: .75rem;" href="{{ route('erros.editar', $registro->id) }}">Editar</a>
-                                            <a class="btn blue-grey darken-3" style="margin-bottom:5px; font-size: .75rem;" onclick="return confirm('Você realmente deseja deletar esse log?')" href="{{ route('erros.deletar', $registro->id) }}">Deletar</a>
+                                            <a class="btn blue-grey lighten-1" style="margin-bottom:5px; font-size: .60rem;" href="{{ route('erros.editar', $registro->id) }}">Arquivar</a>
+                                            <a class="btn blue-grey darken-3" style="margin-bottom:5px; font-size: .60rem;" onclick="return confirm('Você realmente deseja deletar esse log?')" href="{{ route('erros.deletar', $registro->id) }}">Deletar</a>
                                         </td>
                                     @endif
                                 </tr>
@@ -80,11 +80,11 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="row">
-                        <div class="col">
-                            <a href="{{ route('erros.adicionar')}}" class="btn blue-grey darken-4 mt-3">Registrar um erro</a>
-                        </div>
-                    </div>
+                    {{--<div class="row">--}}
+                        {{--<div class="col">--}}
+                            {{--<a href="{{ route('erros.adicionar')}}" class="btn blue-grey darken-4 mt-3">Registrar um erro</a>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
             </div>
         </div>

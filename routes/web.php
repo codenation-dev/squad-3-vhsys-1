@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/', ['as' => 'erros', 'uses' => 'ErroController@index']);
             Route::get('/adicionar', ['as' => 'erros.adicionar', 'uses' => 'ErroController@adicionar']);
             Route::post('/salvar', ['as' => 'erros.salvar', 'uses' => 'ErroController@salvar']);
-            Route::get('/editar/{id}', ['as' => 'erros.editar', 'uses' => 'ErroController@editar']);
+            Route::get('/arquivar/{id}', ['as' => 'erros.editar', 'uses' => 'ErroController@arquivar']);
             Route::put('/atualizar/{id}', ['as' => 'erros.atualizar', 'uses' => 'ErroController@atualizar']);
             Route::get('/deletar/{id}', ['as' => 'erros.deletar', 'uses' => 'ErroController@deletar']);
             Route::get('/detalhes/{id}', ['as' => 'erros.detalhes', 'uses' => 'ErroController@detalhes']);

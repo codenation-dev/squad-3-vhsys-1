@@ -26,7 +26,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
             Route::post('/salvar', ['uses' => 'ErroController@store']);
             Route::get('/erros/{id}', ['uses' => 'ErroController@show']);
             Route::get('/editar/{id}', ['uses' => 'ErroController@editar']);
-            Route::put('/atualizar/{id}', ['uses' => 'ErroController@atualizar']);
+            Route::put('/arquivar/{id}', ['uses' => 'ErroController@arquivar']);
             Route::get('/deletar/{id}', ['uses' => 'ErroController@deletar']);
             Route::get('/detalhes/{id}', ['uses' => 'ErroController@detalhes']);
         });

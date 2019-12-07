@@ -57,22 +57,11 @@ class ErroController extends Controller
         }
     }
 
-
-//    public function store(Request $req)
-//    {
-//        $dados = $req->all();
-//
-//        Erro::create($dados);
-//        return redirect()->route('erros');
-//    }
-
-    public function atualizar(Request $req, $id)
+    public function arquivar($id)
     {
-        $dados = $req->all();
-
-
-        Erro::find($id)->update($dados);
-            return redirect()->route('erros');
+        $erro = Erro::find($id);
+        $erro->status = 'Concluido';
+        $erro->update();
     }
 
     public function deletar($id) {

@@ -32,10 +32,12 @@ class ErroController extends Controller
         return redirect()->route('erros');
     }
 
-    public function editar($id)
+    public function arquivar($id)
     {
-        $registro = Erro::find($id);
-        return view('erros.editar', compact('registro'));
+        $erro = Erro::find($id);
+        $erro->status = 'Concluido';
+        $erro->update();
+        return redirect()->route('erros');
     }
 
     public function atualizar(Request $req, $id)
