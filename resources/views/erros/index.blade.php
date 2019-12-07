@@ -9,11 +9,32 @@
                 <div class="mt-3 left-align blue-grey darken-2" style="border-radius: 6px; color: #fff; padding: 12px;">
 
                     <h5 style="font-size: 1.8vw">Bem vindo(a) {{ Auth::user()->name }} </h5>
-                    <p style="font-size: 1.4vw">Seu token é: {{Auth::user()->password}}</p>
+                    {{--<p style="font-size: 1.4vw">Seu token é: {{Auth::user()->password}}</p>--}}
 
                 </div>
-                <div>
-                    <h4 class="section">Logs de Erros - {{ Auth::user()->name }}</h4>
+                <div class="row">
+                    <div class="input-field col m6 s12 l3">
+                        <select name="ambiente">
+                            <option selected>Produção</option>
+                            <option>Homologação</option>
+                            <option>Dev</option>
+                        </select>
+                    </div>
+                    <div class="input-field col m6 s12 l3">
+                        <select name="order">
+                            <option selected disabled>Ordenar por:</option>
+                            <option>Nível</option>
+                            <option>Frequência</option>
+                        </select>
+                    </div>
+                    <div class="input-field col m6 s12 l3">
+                        <select name="busca">
+                            <option selected disabled>Buscar por:</option>
+                            <option>Nível</option>
+                            <option>Descrição</option>
+                            <option>Origem</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div>

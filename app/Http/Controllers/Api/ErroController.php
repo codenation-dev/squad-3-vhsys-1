@@ -10,33 +10,61 @@ use App\User;
 
 class ErroController extends Controller
 {
-    public function index()
-    {
-        $usuarios = User::all();
-        $registros = Erro::all();
+    /**
+     * @var Erro
+     */
+    private $erro;
 
-        return view('erros.index', compact('registros'), compact('usuarios'));
+    public function __construct(Erro $erro)
+    {
+        $this->erro = $erro;
     }
 
-    public function adicionar()
+    public function index(Request $request)
     {
-        return view('erros.adicionar');
+        $erros = auth('api')->user()->erros();
+
+        return response()->json($erros->get(), 200 );
     }
 
-    public function salvar(Request $req)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
+        $data = $request->all();
 
-        $dados = $req->all();
+        try{
+            $data['usuario_id'] = auth('api')->user()->id;
+            $data['usuario_name'] = auth('api')->user()->name;
+            $data['status'] = 'ativo';
+            $data['data'] = date('Y-m-d');
 
-        Erro::create($dados);
-        return redirect()->route('erros');
+            Erro::create($data);
+
+            return response()->json([
+                'msg' => 'Log de Erro cadastrado com sucesso!'
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json( [
+                'Erro' => 'Não foi possível cadastrar o log de erro.' . $e->getMessage(),
+                'Msg' => 'Verifique os dados e tente novamente!'
+            ], 400);
+        }
     }
 
-    public function editar($id)
-    {
-        $registro = Erro::find($id);
-        return view('erros.editar', compact('registro'));
-    }
+
+//    public function store(Request $req)
+//    {
+//        $dados = $req->all();
+//
+//        Erro::create($dados);
+//        return redirect()->route('erros');
+//    }
 
     public function atualizar(Request $req, $id)
     {
@@ -51,14 +79,5 @@ class ErroController extends Controller
         Erro::find($id)->delete();
         return redirect()->route('erros');
     }
-
-    public function detalhes($id)
-    {
-        $usuarios = User::all();
-        $registros = Erro::find($id);
-
-        return view('erros.detalhes', compact('registros'), compact('usuarios'));
-    }
-
 
 }

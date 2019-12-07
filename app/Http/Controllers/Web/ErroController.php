@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,28 +15,27 @@ class ErroController extends Controller
         $usuarios = User::all();
         $registros = Erro::all();
 
-        return view('admin.erros.index', compact('registros'), compact('usuarios'));
+        return view('erros.index', compact('registros'), compact('usuarios'));
     }
 
     public function adicionar()
     {
-        return view('admin.erros.adicionar');
+        return view('erros.adicionar');
     }
 
     public function salvar(Request $req)
     {
-        //$validator = \Validator::make();
 
         $dados = $req->all();
 
         Erro::create($dados);
-        return redirect()->route('admin.erros');
+        return redirect()->route('erros');
     }
 
     public function editar($id)
     {
         $registro = Erro::find($id);
-        return view('admin.erros.editar', compact('registro'));
+        return view('erros.editar', compact('registro'));
     }
 
     public function atualizar(Request $req, $id)
@@ -45,12 +44,21 @@ class ErroController extends Controller
 
 
         Erro::find($id)->update($dados);
-        return redirect()->route('admin.erros');
+            return redirect()->route('erros');
     }
 
     public function deletar($id) {
         Erro::find($id)->delete();
-        return redirect()->route('admin.erros');
+        return redirect()->route('erros');
     }
+
+    public function detalhes($id)
+    {
+        $usuarios = User::all();
+        $registros = Erro::find($id);
+
+        return view('erros.detalhes', compact('registros'), compact('usuarios'));
+    }
+
 
 }

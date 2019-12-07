@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -29,6 +30,25 @@ class LoginController extends Controller
         } else {
             return redirect()->route('login');
         }
+    }
+
+        public function loginApi(Request $request)
+    {
+        $credentials = $request->all(['email', 'password']);
+
+        Validator::make($credentials, [
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ])->validate();
+
+        if(!$token = auth('api')->attempt($credentials)) {
+            return response()->json(['Unauthorized' => 'Acesso não autorizado!'], 401);
+        }
+
+        return response()->json([
+            'Msg:' => 'Login realizado com sucesso!',
+            'token' => $token
+        ], 201);
     }
 
     public function sair(Request $request)

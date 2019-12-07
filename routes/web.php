@@ -26,8 +26,8 @@ Route::get('/register', ['uses' => 'Auth\RegisterController@showRegistrationForm
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::namespace('Api')->group(function() {
-        Route::prefix('api/erros')->group(function() {
+    Route::namespace('Web')->group(function() {
+        Route::prefix('erros')->group(function() {
             Route::get('/', ['as' => 'erros', 'uses' => 'ErroController@index']);
             Route::get('/adicionar', ['as' => 'erros.adicionar', 'uses' => 'ErroController@adicionar']);
             Route::post('/salvar', ['as' => 'erros.salvar', 'uses' => 'ErroController@salvar']);
@@ -49,6 +49,6 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
+Auth::routes();
 
-
-
+Route::get('/home', 'HomeController@index')->name('home');
