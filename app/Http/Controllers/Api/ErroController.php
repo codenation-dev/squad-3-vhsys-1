@@ -6,6 +6,10 @@ use App\Erro;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+const SEARCH_FOR_LEVEL = "1";
+const SEARCH_FOR_DESCRIPTION = "2";
+const SEARCH_FOR_ORIGIN = "2";
+
 class ErroController extends Controller
 {
     /**
@@ -18,45 +22,88 @@ class ErroController extends Controller
         $this->erro = $erro;
     }
 
+    /*
+    protected function storeOrUpdate(Request $request, $id = NULL) 
+    {
+        $data = $request->all();
+        //sore
+        
+        if ($id == NULL)
+        {
+            try{
+                $data['usuario_id'] = auth('api')->user()->id;
+                $data['usuario_name'] = auth('api')->user()->name;
+                $data['status'] = 'ativo';
+                $data['data'] = date('Y-m-d');
+
+                $erro = $this->erro->create($data);
+
+                return response()->json([
+                    'msg' => 'Log de Erro cadastrado com sucesso!'
+                ], 200);
+
+            } catch (\Exception $e) {
+                return response()->json( [
+                    'Erro' => 'Não foi possível cadastrar o log de erro.',
+                    'Msg' => 'Verifique os dados e tente novamente!' . $e->getMessage()
+                ], 400);
+            }
+        }
+
+        //update     
+        try{
+            $erro = auth('api')->user()->erro()->findOrFail($id);
+            $erro->update($data);
+
+            return response()->json([
+                'data' => [
+                    'msg' => 'Log atualizado com sucesso!'
+                ]
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'Erro' => 'Erro ao atualizar: Log não existe ou pertence a outro usuário!',
+                'Msg' => 'Verifique os dados e tente novamente!'
+            ], 400);
+        }        
+    }
+    */
+
     public function index(Request $request)
     {
-        $userId     = auth('api')->user()->id;
-        $ambience   = $request->get('ambiente');
-        $ordination  = $request->get('ordenacao');
-        $search      = $request->get('busca');
+        $userId         = auth('api')->user()->id;
+        $ambience       = $request->get('ambiente');
+        $ordination     = $request->get('ordenacao');
+        $search         = $request->get('busca');
+        $searchParam    = $request->get('chave');
 
-        $filtros = [
+        $filters = [
             ['status',      '=',    'ativo'],
             ['usuario_id',  '=',    $userId]];
 
         if ($ambience !== null)
-            array_push($filtros, ["ambiente", '=', $ambience]);
+            array_push($filters, ["ambiente", '=', $ambience]);
+
+
+        if ($search !== null){
+            if ($search === SEARCH_FOR_LEVEL)
+                array_push($filters, ["nivel", '=', $searchParam]);
+
+            if ($search === SEARCH_FOR_DESCRIPTION)
+                array_push($filters, ["titulo", '=', $searchParam]);
+                
+            if ($search === SEARCH_FOR_ORIGIN)
+                array_push($filters, ["origem", '=', $searchParam]);                
+        }
 
         $order = "data";
         if ($ordination === "1")
             $order = "nivel";
-
-        //if ($busca !== null)
    
-   
-        $erros = Erro::where($filtros)
+        $erros = Erro::where($filters)
             ->orderBy($order, 'asc');
 
-        //$erros = Erro::where('usuario_id', $userId);
-        //->orderBy('name', 'desc')
-        //->take(10)
-        //->get();
-
-
-        // $erros = auth('api')->user()->erro();
-
-        //     if($request->has('filters')) {
-        //         $filters = explode(';', $request->get('filters'));
-        //         foreach($filters as $filter) {
-        //             $result = explode(':', $filter);
-        //             $erros = $erros->where( $result[0], $result[1], $result[2]);
-        //         }
-        //     }
         return response()->json($erros->paginate(10), 200 );
     }
 
@@ -68,6 +115,8 @@ class ErroController extends Controller
      */
     public function store(Request $request)
     {
+       // $this->storeOrUpdate($request);
+    
         $data = $request->all();
 
         try{
@@ -88,6 +137,7 @@ class ErroController extends Controller
                 'Msg' => 'Verifique os dados e tente novamente!' . $e->getMessage()
             ], 400);
         }
+        
     }
 
     /**
@@ -120,6 +170,8 @@ class ErroController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //$this->storeOrUpdate($request, $id);
+
         $data = $request->all();
 
         try{
@@ -138,6 +190,7 @@ class ErroController extends Controller
                 'Msg' => 'Verifique os dados e tente novamente!'
             ], 400);
         }
+        
     }
 
     public function destroy($id)

@@ -15,6 +15,7 @@ class Erro extends Model
         'nivel',
         'eventos',
         'ambiente',
+        'origem',
         'status',
         'usuario_name',
         'data'
