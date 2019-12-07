@@ -7,6 +7,8 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -28,16 +30,17 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/api/erros';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
         $this->middleware('guest');
+        $this->user = $user;
     }
 
     /**
@@ -51,7 +54,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
 
@@ -68,5 +71,71 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function registerUser(Request $request)
+    {
+        $dados = $request->all(['name', 'password', 'email']);
+
+        if (User::create([
+            'name' => $dados['name'],
+            'email' => $dados['email'],
+            'password' => Hash::make($dados['password']),])) {
+            return response()->json([
+                'status' => 'OK',
+                'Message' => 'Usuário registrado com sucesso!'], 201);
+        }
+    }
+
+    public function listUsers()
+    {
+        return response()->json([
+            'status' => 'OK',
+            'Message' => User::paginate(8)], 201);
+    }
+
+    public function listUser($id)
+    {
+        $user = User::find($id);
+
+        if($user) {
+            return response()->json([
+                'status' => 'OK',
+                'Message' => $user], 201);
+        } else {
+            return response()->json(['data' => ['msg' => 'Usuário não existe!']]);
+        }
+    }
+
+    public function updateUser($id, Request $request)
+    {
+        $dados = $request->all(['name', 'password', 'email']);
+        $user = User::where('id', $id)->first();
+        $user->name = $dados['name'];
+        $user->email = $dados['email'];
+        $user->password = Hash::make($dados['password']);
+        if ($user->save()) {
+            return response()->json([
+                'status' => 'OK',
+                'Message' => 'Usuário atualizado com sucesso!'], 201);
+        }
+        return response()->json([
+            'status' => 'ERROR',
+            'Message' => 'Error Registering'
+        ], 200);
+    }
+
+    public function deleteUser($id)
+    {
+        $user = $this->user->find($id);
+
+        if ($user) {
+            $user->delete();
+            return response()->json([
+                'status' => 'OK',
+                'Message' => 'Usuário deletado com sucesso!'], 201);
+        } else {
+            return response()->json(['data' => ['msg' => 'Usuário não existe!']]);
+        }
     }
 }

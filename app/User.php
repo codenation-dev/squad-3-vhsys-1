@@ -2,9 +2,9 @@
 
 namespace App;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
@@ -38,9 +38,11 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-    public function erro()
+    public $timestamps = false;
+
+    public function erros ()
     {
-        return $this->hasMany(Erro::class, 'usuario_id');
+        return $this->hasMany( Erro::class, 'usuario_id');
     }
 
     public function getJWTIdentifier()

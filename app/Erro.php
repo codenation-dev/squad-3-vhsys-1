@@ -8,17 +8,8 @@ class Erro extends Model
 {
 
     protected $fillable = [
-        'id',
-        'usuario_id',
-        'titulo',
-        'descricao',
-        'nivel',
-        'eventos',
-        'status',
-        'usuario_name',
-        'data'
+        'id', 'usuario_id', 'titulo', 'descricao', 'nivel', 'eventos', 'ambiente', 'origem', 'status', 'usuario_name', 'data'
     ];
-
 
     /**
      * The attributes that should be cast to native types.
@@ -29,8 +20,15 @@ class Erro extends Model
         'email_verified_at' => 'datetime',
     ];
 
+
+    //public $timestamps = false;
+
+
     public function user ()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'usuario_id');
     }
+
 }
+
+

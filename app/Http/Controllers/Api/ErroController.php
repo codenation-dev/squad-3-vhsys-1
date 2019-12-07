@@ -2,132 +2,63 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Erro;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Erro;
+use App\User;
+
 
 class ErroController extends Controller
 {
-    /**
-     * @var Erro
-     */
-    private $erro;
-
-    public function __construct(Erro $erro)
+    public function index()
     {
-        $this->erro = $erro;
+        $usuarios = User::all();
+        $registros = Erro::all();
+
+        return view('erros.index', compact('registros'), compact('usuarios'));
     }
 
-    public function index(Request $request)
+    public function adicionar()
     {
-        $erros = auth('api')->user()->erro();
-
-            if($request->has('filters')) {
-                $filters = explode(';', $request->get('filters'));
-                foreach($filters as $filter) {
-                    $result = explode(':', $filter);
-                    $erros = $erros->where($result[0], $result[1], $result[2]);
-                }
-            }
-            return response()->json($erros->paginate(10), 200 );
+        return view('erros.adicionar');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function salvar(Request $req)
     {
-        $data = $request->all();
 
-        try{
-            $data['usuario_id'] = auth('api')->user()->id;
-            $data['usuario_name'] = auth('api')->user()->name;
-            $data['status'] = 'ativo';
-            $data['data'] = date('Y-m-d');
+        $dados = $req->all();
 
-            $erro = $this->erro->create($data);
-
-            return response()->json([
-                'msg' => 'Log de Erro cadastrado com sucesso!'
-            ], 200);
-
-        } catch (\Exception $e) {
-            return response()->json( [
-                'Erro' => 'Não foi possível cadastrar o log de erro.',
-                'Msg' => 'Verifique os dados e tente novamente!'
-            ], 400);
-        }
+        Erro::create($dados);
+        return redirect()->route('erros');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function editar($id)
     {
-        try{
-            $erro = auth('api')->user()->erro()->findOrFail($id);
-
-            return response()->json([
-                'data' => $erro
-            ], 200);
-
-        } catch (\Exception $e) {
-            return response()->json(['Erro' => 'Log não existe ou pertence a outro usuário!'
-            ], 404);
-        }
+        $registro = Erro::find($id);
+        return view('erros.editar', compact('registro'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function atualizar(Request $req, $id)
     {
-        $data = $request->all();
+        $dados = $req->all();
 
-        try{
-            $erro = auth('api')->user()->erro()->findOrFail($id);
-            $erro->update($data);
 
-            return response()->json([
-                'data' => [
-                    'msg' => 'Log atualizado com sucesso!'
-                ]
-            ], 200);
-
-        } catch (\Exception $e) {
-            return response()->json([
-                'Erro' => 'Erro ao atualizar: Log não existe ou pertence a outro usuário!',
-                'Msg' => 'Verifique os dados e tente novamente!'
-            ], 400);
-        }
+        Erro::find($id)->update($dados);
+            return redirect()->route('erros');
     }
 
-    public function destroy($id)
-    {
-        try{
-            $erro = auth('api')->user()->erro()->findOrFail($id);
-            $erro->delete();
-
-            return response()->json([
-                'data' => [
-                    'msg' => 'Log removido com sucesso!'
-                ]
-            ], 200);
-
-        } catch (\Exception $e) {
-            return response()->json([
-                'Erro' => 'Log não encontrado ou pertence a outro usuário!'
-            ], 400);
-        }
+    public function deletar($id) {
+        Erro::find($id)->delete();
+        return redirect()->route('erros');
     }
+
+    public function detalhes($id)
+    {
+        $usuarios = User::all();
+        $registros = Erro::find($id);
+
+        return view('erros.detalhes', compact('registros'), compact('usuarios'));
+    }
+
+
 }

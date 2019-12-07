@@ -13,33 +13,21 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::namespace('Auth')->group(function() {
+//    Route::prefix('api/user')->group(function() {
+//        Route::post('/cadastrar', ['uses' => 'RegisterController@registerUser']);
+//        Route::get('/lista', ['uses' => 'RegisterController@listUsers']);
+//        Route::get('/lista/{id}', ['uses' => 'RegisterController@listUser']);
+//        Route::put('/atualizar/{id}', ['uses' => 'RegisterController@updateUser']);
+//        Route::delete('/deletar/{id}', ['uses' => 'RegisterController@deleteUser']);
+//    });
+//});
 
-Route::namespace('Api')->group(function() {
-
-    //Rota para login
-    Route::post('login', 'Auth\\LoginJwtController@login')->name('login');
-    Route::get('logout', 'Auth\\LoginJwtController@logout')->name('logout');
-    Route::get('refresh', 'Auth\\LoginJwtController@refresh')->name('refresh');
-
-
-    Route::group(['middleware' => ['jwt.auth']], function (){
-
-        //Rotas para os Logs de Erros
-        Route::name('')->group(function() {
-            Route::resource('erros', 'ErroController');
-        });
+//Route::post('/register', ['as' => 'register', 'uses' => 'Auth\RegisterController@register']);
+//Route::get('/register', ['uses' => 'Auth\RegisterController@showRegistrationForm']);
 
 
-        // Rotas para os usuários
-        Route::name('')->group(function() {
-            Route::resource('users', 'UserController');
-        });
-    });
 
 
-});
 
 
