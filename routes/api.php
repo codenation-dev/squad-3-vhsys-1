@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,37 +13,28 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('/login', ['as' => 'login.entrar', 'uses' => 'Api\LoginController@loginApi']);
-
-
-//Auth::routes();
+Route::post('/login', ['uses' => 'Api\LoginController@login']);
+Route::get('/logout', ['uses' => 'Api\LoginController@logout']);
 
 Route::group(['middleware' => 'jwt.auth'], function () {
-    Route::namespace('Api')->group(function() {
-        Route::prefix('erros')->group(function() {
-            Route::get('/', ['uses' => 'ErroController@index']);
-            Route::get('/adicionar', ['uses' => 'ErroController@adicionar']);
-            Route::post('/salvar', ['uses' => 'ErroController@store']);
-            Route::get('/erros/{id}', ['uses' => 'ErroController@show']);
-            Route::get('/editar/{id}', ['uses' => 'ErroController@editar']);
-            Route::put('/arquivar/{id}', ['uses' => 'ErroController@arquivar']);
-            Route::get('/deletar/{id}', ['uses' => 'ErroController@deletar']);
-            Route::get('/detalhes/{id}', ['uses' => 'ErroController@detalhes']);
-        });
+  Route::namespace('Api')->group(function() {
+    Route::prefix('erros')->group(function() {
+      Route::get('/', ['uses' => 'ErroController@index']);
+      Route::get('/{id}', ['uses' => 'ErroController@show']);
+      Route::post('/cadastrar', ['uses' => 'ErroController@save']);
+      Route::patch('/arquivar/{id}', ['uses' => 'ErroController@store']);
+      Route::delete('/deletar/{id}', ['uses' => 'ErroController@destroy']);
     });
-    Route::namespace('Auth')->group(function() {
-        Route::prefix('user')->group(function() {
-            Route::post('/cadastrar', ['uses' => 'RegisterController@registerUser']);
-            Route::get('/lista', ['uses' => 'RegisterController@listUsers']);
-            Route::get('/lista/{id}', ['uses' => 'RegisterController@listUser']);
-            Route::put('/atualizar/{id}', ['uses' => 'RegisterController@updateUser']);
-            Route::delete('/deletar/{id}', ['uses' => 'RegisterController@deleteUser']);
-        });
-    });
-});
 
-//Route::post('/register', ['as' => 'register', 'uses' => 'Auth\RegisterController@register']);
-//Route::get('/register', ['uses' => 'Auth\RegisterController@showRegistrationForm']);
+    Route::prefix('users')->group(function() {
+      Route::get('/', ['uses' => 'UserController@index']);
+      Route::get('/{id}', ['uses' => 'UserController@show']);
+      Route::post('/cadastrar', ['uses' => 'UserController@save']);
+      Route::patch('/atualizar/{id}', ['uses' => 'UserController@update']);
+      Route::delete('/deletar/{id}', ['uses' => 'UserController@destroy']);
+    });
+  });
+});
 
 
 

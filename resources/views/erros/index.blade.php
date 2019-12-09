@@ -9,7 +9,7 @@
                 <div class="mt-3 left-align blue-grey darken-2" style="border-radius: 6px; color: #fff; padding: 12px;">
 
                     <h5 style="font-size: 1.8vw">Bem vindo(a) {{ Auth::user()->name }} </h5>
-                    {{--<p style="font-size: 1.4vw">Seu token é: {{Auth::user()->password}}</p>--}}
+                    {{--<p style="font-size: 1vw; word-break: break-word;">Seu token é: {{Auth::user()->password}}</p>--}}
 
                 </div>
                 <div class="row">
@@ -35,6 +35,11 @@
                             <option>Origem</option>
                         </select>
                     </div>
+                    <div class="input-field col m6 s12 l3">
+                        <input id="search" type="search">
+                        <label for="search">Procurar</label>
+                        <i class="material-icons"  onclick="alert('oi')">search</i>
+                    </div>
                 </div>
 
                 <div>
@@ -55,7 +60,7 @@
                         <tbody>
 
                             @foreach($registros as $registro)
-                                @if(Auth::user()->id == ($registro->usuario_id || Auth::user()->admin == 1) && $registro->status === 'Ativo')
+                                @if((Auth::user()->id == $registro->usuario_id || Auth::user()->admin == 1) && $registro->status === 'Ativo')
 
                                 <tr>
                                     <td>{{$registro->id}}</td>
@@ -71,7 +76,7 @@
 
                                     @if(Auth::user()->admin == 1)
                                         <td>
-                                            <a class="btn blue-grey lighten-1" style="margin-bottom:5px; font-size: .60rem;" href="{{ route('erros.editar', $registro->id) }}">Arquivar</a>
+                                            <a class="btn blue-grey lighten-1" style="margin-bottom:5px; font-size: .60rem;" onclick="return confirm('Você realmente deseja arquivar esse log?')" href="{{ route('erros.editar', $registro->id) }}">Arquivar</a>
                                             <a class="btn blue-grey darken-3" style="margin-bottom:5px; font-size: .60rem;" onclick="return confirm('Você realmente deseja deletar esse log?')" href="{{ route('erros.deletar', $registro->id) }}">Deletar</a>
                                         </td>
                                     @endif

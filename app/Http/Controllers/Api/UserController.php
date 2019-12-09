@@ -22,9 +22,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->user->paginate(10);
+      $users = auth('api')->user();
 
-        return response()->json($users, 200);
+      return response()->json($users->get(), 200 );
     }
 
     /**
@@ -33,7 +33,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function save(Request $request)
     {
         $data = $request->all();
 
@@ -48,7 +48,7 @@ class UserController extends Controller
             $user = $this->user->create($data);
 
             return response()->json([
-                    'msg' => 'Usuário cadastrado com sucesso!'
+                    'msg' => 'Usuário ' . $data['name'] . ' cadastrado com sucesso!'
             ], 200);
 
         } catch (\Exception $e) {
@@ -76,7 +76,7 @@ class UserController extends Controller
 
         } catch (\Exception $e) {
             return response()->json([
-                'Erro' => 'Usuário não encontrado!'
+                'Erro' => 'Usuário de ID ' . $id . ' não encontrado!'
             ], 404);
         }
     }
@@ -88,30 +88,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        $data = $request->all();
-
-        if($request->has('password') && $request->get('password')) {
-
-            $data['password'] = bcrypt($data['password']);
-        } else {
-            unset($data['password']);
-        }
-
         try{
             $user = $this->user->findOrFail($id);
-            $user->update($data);
+            $user->admin = ($user->admin === 0 ? 1 : 0);
+              $user->update();
 
-            return response()->json([
+              return response()->json([
                 'data' => [
-                    'msg' => 'Usuário atualizado com sucesso!'
+                  'msg' => 'Permissão de acesso atualizada com sucesso!',
+                  'Obs' => 'O usuário ' . $user->name . ($user->admin === 1 ? ' tem permissões de administrador!' : ' não tem permissões de administrador!')
                 ]
-            ], 200);
+              ], 200);
 
         } catch (\Exception $e) {
             return response()->json([
-                'Erro' => 'Usuário não encontrado ou erro ao atualizar usuário!',
+                'Erro' => 'Usuário de ID ' . $id . ' não encontrado ou erro ao atualizar usuário!',
                 'Msg' => 'Verifique os dados e tente novamente!'
             ], 404);
         }
@@ -131,19 +124,19 @@ class UserController extends Controller
                 $user->delete();
             } else {
                 return response()->json([
-                    'Erro' => 'Usuário é administrador, não pode ser excluído!'
+                    'Erro' => 'Usuário de ID ' . $id . ' é administrador, não pode ser excluído!'
                 ], 401);
             }
 
             return response()->json([
                 'data' => [
-                    'msg' => 'Usuário removido com sucesso!'
+                    'msg' => 'Usuário de ID ' . $id . ' removido com sucesso!'
                 ]
             ], 200);
 
         } catch (\Exception $e) {
             return response()->json([
-                'Erro' => 'Usuário não encontrado!'
+                'Erro' => 'Usuário de ID ' . $id . ' não encontrado!'
             ], 404);
         }
     }

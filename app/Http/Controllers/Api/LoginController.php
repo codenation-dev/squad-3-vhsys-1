@@ -11,50 +11,59 @@ use Illuminate\Support\Facades\Validator;
 class LoginController extends Controller
 {
 
-    public function __construct(User $user)
-    {
+  public function __construct(User $user)
+  {
+    $this->user = $user;
+  }
 
-        $this->user = $user;
+  public function index()
+  {
+    return view('login.index');
+  }
+
+  /**
+   * Login a user.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+    public function login(Request $request)
+  {
+
+    $credentials = $request->all(['email', 'password']);
+
+    Validator::make($credentials, [
+        'email' => 'required|string',
+        'password' => 'required|string',
+    ])->validate();
+
+    if(!$token = auth('api')->attempt($credentials)) {
+        return response()->json(['Unauthorized' => 'Acesso não autorizados!'], 401);
     }
 
-    public function index()
-    {
-        return view('login.index');
+    return response()->json([
+        'Msg' => 'Login realizado com sucesso!',
+        'token' => $token
+    ], 201);
+  }
+
+  /**
+   * Logout a user.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function logout(Request $request)
+  {
+    if(auth('api')->guest()) {
+      return response()->json([
+        'Msg' => 'Usuário não está logado!'
+      ], 201);
     }
 
-    public function entrar(Request $req)
-    {
-        $dados = $req->all();
-        if(Auth::attempt(['email'=>$dados['email'], 'password'=>$dados['password']])) {
-            return redirect()->route('erros');
-        } else {
-            return redirect()->route('login');
-        }
-    }
-
-        public function loginApi(Request $request)
-    {
-        $credentials = $request->all(['email', 'password']);
-
-        Validator::make($credentials, [
-            'email' => 'required|string',
-            'password' => 'required|string',
-        ])->validate();
-
-        if(!$token = auth('api')->attempt($credentials)) {
-            return response()->json(['Unauthorized' => 'Acesso não autorizado!'], 401);
-        }
-
-        return response()->json([
-            'Msg:' => 'Login realizado com sucesso!',
-            'token' => $token
-        ], 201);
-    }
-
-    public function sair(Request $request)
-    {
-        Auth::logout();
-        return redirect()->route('home.index');
-    }
-
+    auth('api')->logout();
+    return response()->json([
+      'Msg' => 'Logout realizado com sucesso!'
+    ], 201);
+  }
 }

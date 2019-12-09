@@ -21,6 +21,12 @@
             var elems = document.querySelectorAll('select');
             var instances = M.FormSelect.init(elems, options);
         });
+        function clear() {
+            alert('oi');
+            // document.getElementById('search').innerHTML = ''
+            // var search = (document).getElementById('search');
+            // search.innerText = '';
+        }
 
         // Or with jQuery
 

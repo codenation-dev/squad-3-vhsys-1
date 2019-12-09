@@ -87,11 +87,24 @@ class RegisterController extends Controller
         }
     }
 
+  public function register(Request $request)
+  {
+    $dados = $request->all(['name', 'password', 'email']);
+
+    if (User::create([
+      'name' => $dados['name'],
+      'email' => $dados['email'],
+      'password' => Hash::make($dados['password']),])) {
+
+      return redirect()->route('erros');
+    }
+  }
+
     public function listUsers()
     {
         return response()->json([
             'status' => 'OK',
-            'Message' => User::paginate(8)], 201);
+            'Message' => User::get()], 201);
     }
 
     public function listUser($id)

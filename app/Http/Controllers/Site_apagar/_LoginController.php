@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Sites;
+namespace App\Http\Controllers\Site_apagar;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

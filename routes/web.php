@@ -17,13 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', ['as' => 'home.index', 'uses' => 'HomeController@index']);
 Route::get('/login', ['as' => 'login', 'uses' => 'Api\LoginController@index']);
-Route::post('/login/entrar', ['as' => 'login.entrar', 'uses' => 'Api\LoginController@entrar']);
-Route::get('/login/sair', ['as' => 'login.sair', 'uses' => 'Api\LoginController@sair']);
+Route::post('/login/entrar', ['as' => 'login.entrar', 'uses' => 'Web\LoginController@login']);
+Route::get('/logout', ['as' => 'login.sair', 'uses' => 'Web\LoginController@logout']);
 
 Route::post('/register', ['as' => 'register', 'uses' => 'Auth\RegisterController@register']);
 Route::get('/register', ['uses' => 'Auth\RegisterController@showRegistrationForm']);
-
-Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::namespace('Web')->group(function() {
@@ -38,7 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
         });
     });
     Route::namespace('Auth')->group(function() {
-        Route::prefix('api/user')->group(function() {
+        Route::prefix('user')->group(function() {
             Route::post('/cadastrar', ['uses' => 'RegisterController@registerUser']);
             Route::get('/lista', ['uses' => 'RegisterController@listUsers']);
             Route::get('/lista/{id}', ['uses' => 'RegisterController@listUser']);
@@ -48,7 +46,6 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home.index');
