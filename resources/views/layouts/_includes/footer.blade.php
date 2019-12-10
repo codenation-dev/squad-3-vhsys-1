@@ -1,8 +1,8 @@
     <footer class="page-footer grey darken-2">
         <div class="container center">
             <div class="">
-                <h5 class="white-text" >AceleraDev PHP Codenation - Squad 3</h5>
-                <p  style="padding-bottom:20px">© {{ date('Y') }} Copyright </p>
+                <h5 class="white-text footer-text" >AceleraDev PHP Codenation - Squad 3</h5>
+                <p style="padding-bottom:20px">© {{ date('Y') }} Copyright </p>
             </div>
         </div>
     </footer>

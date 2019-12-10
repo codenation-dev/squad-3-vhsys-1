@@ -8,7 +8,7 @@
     <div class="position-ref full-height">
       <div class="content">
         <div class="mt-3 left-align blue-grey darken-2" style="border-radius: 6px; color: #fff; padding: 12px;">
-          <h5 style="font-size: 1.8vw">Bem vindo(a) {{ Auth::user()->name }} </h5>
+          <h5 style="font-size: 1.8vw" class="welcome">Bem vindo(a) {{ Auth::user()->name }} </h5>
           {{--<p style="font-size: 1vw; word-break: break-word;">Seu token é: {{$token}}</p>--}}
         </div>
 
@@ -17,7 +17,7 @@
             <select name="ambiente">
               <option selected>Produção</option>
               <option>Homologação</option>
-              <option>Dev</option>
+              <option>Desenvolvimento</option>
             </select>
           </div>
           <div class="input-field col m6 s12 l3">
@@ -50,6 +50,7 @@
                 <th class="center-align ">Nível</th>
                 <th class="center-align">Descrição do log</th>
                 <th class="center-align">Eventos</th>
+                <th class="center-align">Origem</th>
                 <th class="center-align">Status</th>
                 <th class="center-align">Usuário</th>
                 @if(Auth::user()->admin == 1)
@@ -66,11 +67,13 @@
                     <td>{{$registro->id}}</td>
                     <td><span class="span-erro {{strtolower($registro->nivel)}}">{{$registro->nivel}}</span></td>
                     <td style="max-width: 540px;">
-                      <p class="center-align">{{$registro->titulo}} <br/>{{$registro->created_at}} </p>
-                      <p>{{mb_substr($registro->descricao, 0, 80)}}{{(mb_strlen($registro->descricao) >= 80 ? '... ' : '')}}</p>
+                      <p>{{mb_substr($registro->descricao, 0, 40)}}{{(mb_strlen($registro->descricao) >= 40 ? '... ' : '')}}</p>
+                      <p class="center-align log-origin">{{$registro->origem}} </p>
+                      <p class="center-align log-title">{{$registro->titulo}} <br/>{{$registro->created_at}} </p>
                       <a class="modal-trigger" href="{{ route('erros.detalhes', $registro->id) }}">+ Detalhes</a>
                     </td>
                     <td>{{$registro->eventos}}</td>
+                    <td>{{$registro->origem}}</td>
                     <td><span class="span-status {{strtolower($registro->status)}}">{{mb_convert_case($registro->status , MB_CASE_TITLE)}}</span></td>
                     <td>{{$registro->usuario_name}}</td>
 

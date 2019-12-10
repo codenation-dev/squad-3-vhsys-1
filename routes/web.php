@@ -24,7 +24,6 @@ Route::get('/logout', ['as' => 'login.sair', 'uses' => 'Web\LoginController@logo
 Route::post('/register', ['as' => 'register', 'uses' => 'Auth\RegisterController@register']);
 Route::get('/register', ['uses' => 'Auth\RegisterController@showRegistrationForm']);
 
-//tem q mudar pra jwt.auth
 Route::group(['middleware' => 'auth'], function () {
   Route::namespace('Web')->group(function() {
     Route::prefix('erros')->group(function() {

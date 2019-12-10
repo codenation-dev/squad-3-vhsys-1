@@ -5,19 +5,23 @@
 @section('content')
 
 <div class="container">
-    <h4 class="center  mt-5">Detalhes do Erro - {{  $registros->titulo }}</h4>
+    <h4 class="center mt-5  detail-title">Detalhes do Log - {{  $registros->titulo }}</h4>
+    <h6 class="center pb-1"> <span>Ocorrido no </span> {{  $registros->origem }} em {{  $registros->created_at }}</h6>
+
     <div class="row col">
         <div class="card darken-1">
             <div class="card-content">
-                <span class="card-title">Título - {{  $registros->titulo }}</span>
+                <h5><b>Título</b></h5>
+                <h6 class="pb-1">{{  $registros->titulo }}</h6>
                 <div class="desc">
-                    <h6><b>Descrição:</b></h6>
+                    <h5><b>Detalhes</b></h5>
                     <p class="pb-1">{{  $registros->descricao }}</p>
-                    <p class="pb-1"> <span>Eventos:</span> {{  $registros->eventos }}</p>
-                    <p class="pb-1">Nível: <span class=" span-erro {{strtolower($registros->nivel)}}">{{$registros->nivel}}</span> </p>
-                    <p class="pb-1">Status: <span class="span-status {{strtolower($registros->status)}}">{{ mb_convert_case($registros->status , MB_CASE_TITLE) }}</span></p>
-                    <p class="pb-1">Data: <span>{{  $registros->created_at }}</span></p>
-                    <p class="pb-1">Usuário: <span>{{ Auth::user()->name }}</span></p>
+                    <p class="pb-1"> <span class="bolder">Eventos:</span> {{  $registros->eventos }}</p>
+                    <p class="pb-1"> <span class="bolder">Origem:</span> {{  $registros->origem }}</p>
+                    <p class="pb-1"><span class="bolder">Nível:</span>  <span class=" span-erro {{strtolower($registros->nivel)}}">{{$registros->nivel}}</span> </p>
+                    <p class="pb-1"><span class="bolder">Status:</span>  <span class="span-status {{strtolower($registros->status)}}">{{ mb_convert_case($registros->status , MB_CASE_TITLE) }}</span></p>
+                    <p class="pb-1"><span class="bolder">Data:</span>  <span>{{  $registros->created_at }}</span></p>
+                    <p class="pb-1"><span class="bolder">Usuário:</span>  <span>{{ Auth::user()->name }}</span></p>
                 </div>
             </div>
             <div class="card-action center">
