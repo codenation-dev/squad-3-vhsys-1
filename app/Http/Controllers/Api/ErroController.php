@@ -18,9 +18,68 @@ class ErroController extends Controller
     $this->erro = $erro;
   }
 
-  public function index()
+  private function ObterIdFrequencia($data): string
   {
-    $erros = auth('api')->user()->erros();
+    $strFreq = '';
+    if ($data['titulo'] !== null) 
+      $strFreq .= $data['titulo'];
+    
+    if ($data['descricao'] !== null) 
+      $strFreq .= $data['descricao'];            
+
+    if ($data['nivel'] !== null) 
+      $strFreq .= $data['nivel'];            
+
+    if ($data['ambiente'] !== null) 
+      $strFreq .= $data['ambiente'];                        
+
+    if ($data['origem'] !== null) 
+      $strFreq .= $data['origem'];             
+
+    if ($data['data'] !== null) 
+      $strFreq .= $data['data']; 
+
+    if ($data['usuario_id'] !== null)
+      $strFreq .= $data['usuario_id'];   
+
+    return md5($strFreq);
+  }
+
+  public function index(Request $request)
+  {    
+    $userId  = auth('api')->user()->id;
+
+    $ambiente   = $request->get('ambiente');
+    $ordenacao  = $request->get('ordenacao');
+    $nivel      = $request->get('nivel');
+    $descricao  = $request->get('descricao');
+    $origem     = $request->get('origem');
+
+    $filters = [
+      ['status',      '=',    'ativo'],
+      ['usuario_id',  '=',    $userId]];
+
+    if ($ambiente !== null)
+      array_push($filters, ["ambiente", '=', $ambiente]);      
+
+    $order = 'eventos';
+    if ($ordenacao !== null)
+      if ($ordenacao === '1')
+        $order = 'nivel';
+
+    if ($nivel !== null)
+        array_push($filters, ["nivel", 'LIKE', '%'.$nivel.'%']);
+
+    if ($descricao !== null)
+        array_push($filters, ["titulo", 'LIKE', '%'.$descricao.'%']);
+        
+    if ($origem !== null)
+        array_push($filters, ["origem", 'LIKE', '%'.$origem.'%']);
+
+
+    $erros = Erro::where($filters)
+      ->orderBy($order, 'asc');
+    
 
     return response()->json($erros->get(), 200 );
   }
@@ -35,22 +94,46 @@ class ErroController extends Controller
   {
     $data = $request->all();
 
-    try{
+    try
+    {
       $data['usuario_id'] = auth('api')->user()->id;
-      $data['usuario_name'] = auth('api')->user()->name;
-      $data['status'] = 'Ativo';
-      $data['data'] = date('Y-m-d');
+      $data['data'] = date('Y-m-d'); 
 
-      Erro::create($data);
+      $idFrequencia = $this->ObterIdFrequencia($data);  
 
-      return response()->json([
-          'msg' => 'Log de Erro cadastrado com sucesso!'
-      ], 200);
+      $erro = Erro::where([
+        ['status', '=', 'Ativo'],
+        ['id_frequencia', '=', $idFrequencia]]
+      )->first();
+
+      if ($erro === null)
+      {
+        $data['usuario_name'] = auth('api')->user()->name;
+        $data['status'] = 'Ativo';             
+        $data['id_frequencia'] = $idFrequencia;
+        $data['eventos'] = 1;
+
+        Erro::create($data);
+
+        return response()->json([
+            'msg' => 'Log de Erro cadastrado com sucesso!'
+        ], 200);
+      }
+      else
+      {
+        $erro->eventos += 1;
+        $erro->update();
+      
+        return response()->json([
+          'msg' => 'Log de Erro atualizado com sucesso!'
+        ], 200);
+      }
 
     } catch (\Exception $e) {
       return response()->json( [
           'Erro' => 'Não foi possível cadastrar o log de erro.',
-          'Msg' => 'Verifique os dados e tente novamente!'
+          'Msg' => 'Verifique os dados e tente novamente!',
+          'Exp' => $e->getMessage()
       ], 400);
     }
   }
@@ -112,7 +195,8 @@ class ErroController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function destroy($id) {
+  public function destroy($id) 
+  {
     try {
       $erro = auth('api')->user()->erros()->findOrFail($id);
       $erro->delete();
@@ -126,4 +210,5 @@ class ErroController extends Controller
       ], 400);
     }
   }
+
 }

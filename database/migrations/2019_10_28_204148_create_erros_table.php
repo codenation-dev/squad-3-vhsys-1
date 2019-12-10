@@ -21,10 +21,11 @@ class CreateErrosTable extends Migration
             $table->string('titulo');
             $table->text('descricao');
             $table->integer('eventos');
+            $table->string('id_frequencia', 32);
             $table->string('status')->default('ativo');
             $table->string('nivel');
             $table->integer('ambiente');
-            $table->string('origem');
+            $table->string('origem');                       
             $table->string('usuario_name')->default('');
             $table->date('data');
             $table->integer('usuario_id')->unsigned();
