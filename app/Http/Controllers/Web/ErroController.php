@@ -11,24 +11,19 @@ use Illuminate\Support\Facades\Auth;
 
 class ErroController extends Controller
 {
-<<<<<<< HEAD
-    static function index()
-    {
-      $usuarios = User::all();
-      $registros = Erro::all();
-=======
     public function index(Request $request)
     {
+        $usuarios = User::all();
+        $registros = Erro::all();
+
         $usuarios = Auth::user();
         $userId  = $usuarios->id;
 
-        $ambiente   = $request->get('ambiente');
-        $ordinacao  = $request->get('ordenacao');
-        $nivel      = $request->get('nivel');
+        // $ambiente   = $request->get('ambiente');
+        // $ordinacao  = $request->get('ordenacao');
+        // $nivel      = $request->get('nivel');
 
-        $registros = Erro::all();
->>>>>>> 67dcd75d4c887dd18b194f1749cac0d50f827616
-
+        // $registros = Erro::all();
       if(auth()->user()) {
         return view('erros.index', compact('registros'), compact('usuarios'));
       }
