@@ -40,7 +40,7 @@ class User extends Authenticatable implements JWTSubject
 
     public $timestamps = false;
 
-    public function erros ()
+    public function erros()
     {
         return $this->hasMany( Erro::class, 'usuario_id');
     }

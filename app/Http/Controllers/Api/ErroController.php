@@ -16,6 +16,7 @@ class ErroController extends Controller
   public function __construct(Erro $erro)
   {
     $this->erro = $erro;
+    $this->middleware('jwt.auth');
   }
 
   public function index()

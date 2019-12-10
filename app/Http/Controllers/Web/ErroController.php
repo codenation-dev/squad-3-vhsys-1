@@ -10,12 +10,14 @@ use App\User;
 
 class ErroController extends Controller
 {
-    public function index()
+    static function index()
     {
-        $usuarios = User::all();
-        $registros = Erro::all();
+      $usuarios = User::all();
+      $registros = Erro::all();
 
+      if(auth()->user()) {
         return view('erros.index', compact('registros'), compact('usuarios'));
+      }
     }
 
     public function adicionar()

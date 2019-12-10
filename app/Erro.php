@@ -6,9 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Erro extends Model
 {
-
     protected $fillable = [
-        'id', 'usuario_id', 'titulo', 'descricao', 'nivel', 'eventos', 'ambiente', 'origem', 'status', 'usuario_name', 'data'
+        'id', 'usuario_id', 'titulo', 'descricao', 'nivel', 'eventos', 'id_frequencia', 'ambiente', 'origem', 'status', 'usuario_name', 'data'
     ];
 
     /**
@@ -20,9 +19,7 @@ class Erro extends Model
         'email_verified_at' => 'datetime',
     ];
 
-
     //public $timestamps = false;
-
 
     public function user ()
     {
