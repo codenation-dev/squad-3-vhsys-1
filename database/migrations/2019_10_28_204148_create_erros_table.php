@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class CreateErrosTable extends Migration
 {
+<<<<<<< HEAD
   /**
    * Run the migrations.
    *
@@ -32,6 +33,31 @@ class CreateErrosTable extends Migration
       $table->foreign('usuario_id')->references('id')->on('users');
       $table->timestamps();
     });
+=======
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('erros', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('titulo');
+            $table->text('descricao');
+            $table->integer('eventos');
+            $table->string('id_frequencia', 32);
+            $table->string('status')->default('ativo');
+            $table->string('nivel');
+            $table->integer('ambiente');
+            $table->string('origem');                       
+            $table->string('usuario_name')->default('');
+            $table->date('data');
+            $table->integer('usuario_id')->unsigned();
+            $table->foreign('usuario_id')->references('id')->on('users');
+            $table->timestamps();
+        });
+>>>>>>> 67dcd75d4c887dd18b194f1749cac0d50f827616
     }
 
     /**
