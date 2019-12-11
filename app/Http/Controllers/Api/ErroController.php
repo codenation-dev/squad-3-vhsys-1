@@ -51,22 +51,28 @@ class ErroController extends Controller
     $userId  = auth('api')->user()->id;
 
     $ambiente   = $request->get('ambiente');
-    $ordenacao  = $request->get('ordenacao');
+    $ordenacao  = $request->get('order');
     $nivel      = $request->get('nivel');
     $descricao  = $request->get('descricao');
     $origem     = $request->get('origem');
 
     $filters = [
-      ['status',      '=',    'ativo'],
-      ['usuario_id',  '=',    $userId]];
+      ['status', '=', 'ativo']
+    ];
 
-    if ($ambiente !== null)
-      array_push($filters, ["ambiente", '=', $ambiente]);      
+    if ($usuarios ->admin != 1)
+      array_push($filters, ["usuario_id", '=', $usuarios->id]);        
 
-    $order = 'eventos';
-    if ($ordenacao !== null)
-      if ($ordenacao === '1')
-        $order = 'nivel';
+      $order = 'eventos';
+      $direcao = 'desc';
+      if ($ordenacao !== null)
+      {
+        if ($ordenacao === '1')
+        {
+          $order = 'nivel';
+          $direcao = 'asc';
+        }
+      }
 
     if ($nivel !== null)
         array_push($filters, ["nivel", 'LIKE', '%'.$nivel.'%']);
@@ -79,7 +85,7 @@ class ErroController extends Controller
 
 
     $erros = Erro::where($filters)
-      ->orderBy($order, 'asc');
+      ->orderBy($order, $direcao);
     
 
     return response()->json($erros->get(), 200 );

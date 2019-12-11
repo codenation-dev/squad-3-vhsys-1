@@ -4,6 +4,26 @@
 @section('title', 'Central de Erros - Home')
 
 @section('content')
+
+<script language="javascript">
+  function submitform()
+  {
+    document.forms["sp2"].submit();
+  }
+
+  function setInputValue(input_id, val) {
+    document.getElementById(input_id).setAttribute('name', val);
+  }
+
+  function Selecionado() {
+    var x = document.getElementById("busca").value;
+    setInputValue('search', x); 
+    
+    
+}
+
+</script>
+
   <div class="container">
     <div class="position-ref full-height">
       <div class="content">
@@ -11,37 +31,40 @@
           <h5 style="font-size: 1.8vw" class="welcome">Bem vindo(a) {{ Auth::user()->name }} </h5>
           {{--<p style="font-size: 1vw; word-break: break-word;">Seu token é: {{$token}}</p>--}}
         </div>
+        
+        <form name=sp2 action="{{ route('erros') }}" method="get">
+
 
         <div class="row">
           <div class="input-field col m6 s12 l3">
             <select name="ambiente">
-              <option selected>Produção</option>
-              <option>Homologação</option>
-              <option>Desenvolvimento</option>
+              <option value="1" selected>Produção</option>
+              <option value="2">Homologação</option>
+              <option value="3">Desenvolvimento</option>
             </select>
           </div>
           <div class="input-field col m6 s12 l3">
             <select name="order">
               <option selected disabled>Ordenar por:</option>
-              <option>Nível</option>
-              <option>Frequência</option>
+              <option value="1">Nível</option>
+              <option value="2">Frequência</option>
             </select>
           </div>
           <div class="input-field col m6 s12 l3">
-            <select name="busca">
+            <select id="busca" onchange="Selecionado()">
               <option selected disabled>Buscar por:</option>
-              <option>Nível</option>
-              <option>Descrição</option>
-              <option>Origem</option>
+              <option value="nivel">Nível</option>
+              <option value="descricao">Descrição</option>
+              <option value="origem">Origem</option>
             </select>
           </div>
           <div class="input-field col m6 s12 l3">
             <input id="search" type="search">
             <label for="search">Procurar</label>
-            <i class="material-icons"  onclick="alert('oi')">search</i>
+            <i class="material-icons" onClick="submitform()">search</i>
           </div>
         </div>
-
+        </form>
         <div>
           <table  class="centered responsive-table">
             <thead>
