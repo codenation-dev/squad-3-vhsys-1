@@ -17,9 +17,7 @@
 
   function Selecionado() {
     var x = document.getElementById("busca").value;
-    setInputValue('search', x); 
-    
-    
+    setInputValue('search', x);
 }
 
 </script>
@@ -38,7 +36,8 @@
         <div class="row">
           <div class="input-field col m6 s12 l3">
             <select name="ambiente">
-              <option value="1" selected>Produção</option>
+              <option selected disabled>Ambiente:</option>
+              <option value="1">Produção</option>
               <option value="2">Homologação</option>
               <option value="3">Desenvolvimento</option>
             </select>
@@ -58,12 +57,13 @@
               <option value="origem">Origem</option>
             </select>
           </div>
-          <div class="input-field col m6 s12 l3">
+          <div class="input-field col m5 s10 l2">
             <input id="search" type="search">
-            <label for="search">Procurar</label>
-            <i class="material-icons" onClick="submitform()">search</i>
+            <label for="search">Buscar</label>
           </div>
-        </div>
+          <div class="input-field col m1 s2 l1" style="padding: 0 !important;">
+            <i class="medium material-icons" style="cursor: pointer" onClick="submitform()">search</i> </div>
+          </div>
         </form>
         <div>
           <table  class="centered responsive-table">
@@ -102,8 +102,8 @@
 
                     @if(Auth::user()->admin == 1)
                       <td>
-                        <a class="btn blue-grey lighten-1" style="margin-bottom:5px; font-size: .60rem;" onclick="return confirm('Você realmente deseja arquivar esse log?')" href="{{ route('erros.editar', $registro->id) }}">Arquivar</a>
-                        <a class="btn blue-grey darken-3" style="margin-bottom:5px; font-size: .60rem;" onclick="return confirm('Você realmente deseja deletar esse log?')" href="{{ route('erros.deletar', $registro->id) }}">Deletar</a>
+                        <a class="btn blue-grey lighten-1" style="margin-bottom:5px; font-size: .70rem;" onclick="return confirm('Você realmente deseja arquivar esse log?')" href="{{ route('erros.editar', $registro->id) }}">Arquivar</a>
+                        <a class="btn blue-grey darken-3" style="margin-bottom:5px; font-size: .70rem;" onclick="return confirm('Você realmente deseja deletar esse log?')" href="{{ route('erros.deletar', $registro->id) }}">Deletar</a>
                       </td>
                     @endif
                   </tr>

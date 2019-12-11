@@ -40,8 +40,8 @@ class ErroController extends Controller
           ['status', '=', 'Ativo']
         ];
     
-        if ($usuarios->admin != 1)
-          array_push($filters, ["usuario_id", '=', $usuarios->id]);      
+//        if ($usuarios->admin != 1)
+//          array_push($filters, ["usuario_id", '=', $usuarios->id]);
 
         if ($ambiente !== null)
           array_push($filters, ["ambiente", '=', $ambiente]);      
@@ -61,7 +61,7 @@ class ErroController extends Controller
             array_push($filters, ["nivel", 'LIKE', '%'.$nivel.'%']);
     
         if ($descricao !== null)
-            array_push($filters, ["titulo", 'LIKE', '%'.$descricao.'%']);
+            array_push($filters, ["descricao", 'LIKE', '%'.$descricao.'%']);
             
         if ($origem !== null)
             array_push($filters, ["origem", 'LIKE', '%'.$origem.'%']);
