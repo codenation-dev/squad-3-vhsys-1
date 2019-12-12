@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use http\Env\Response;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class LoginJwtController extends Controller
@@ -18,20 +19,20 @@ class LoginJwtController extends Controller
         ])->validate();
 
         if(!$token = auth('api')->attempt($credentials)) {
-            return response()->json(['Unauthorized' => 'Acesso não autorizado!'], 401);
+            return response()->json(['Unauthorized' => '
+
+                !'], 401);
         }
 
         return response()->json([
-            'Msg:' => 'Login realizado com sucesso!',
-            'token' => $token
-        ], 201);
+           'token' => $token
+        ]);
     }
 
     public function logout()
     {
         auth('api')->logout();
-        return response()->json([
-            'Msg:' => 'Logout realizado!'], 200);
+        return response()->json(['Logout realizado!'], 200);
     }
 
     public function refresh()
@@ -39,8 +40,8 @@ class LoginJwtController extends Controller
         $token = auth('api')->refresh();
 
         return response()->json([
-            'Msg:' => 'Token atualizado!',
             'token' => $token
-        ], 200);
+        ]);
+
     }
 }

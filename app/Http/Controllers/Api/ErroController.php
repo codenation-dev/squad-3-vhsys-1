@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Erro;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ErroController extends Controller
 {
@@ -15,21 +16,15 @@ class ErroController extends Controller
 
     public function __construct(Erro $erro)
     {
+
         $this->erro = $erro;
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $erros = auth('api')->user()->erro();
 
-            if($request->has('filters')) {
-                $filters = explode(';', $request->get('filters'));
-                foreach($filters as $filter) {
-                    $result = explode(':', $filter);
-                    $erros = $erros->where($result[0], $result[1], $result[2]);
-                }
-            }
-            return response()->json($erros->paginate(10), 200 );
+        return response()->json($erros->paginate(10), 200 );
     }
 
     /**
@@ -42,11 +37,23 @@ class ErroController extends Controller
     {
         $data = $request->all();
 
+        $validator = \Validator::make($request->all(), [
+            'titulo' => 'required',
+            'descricao' => 'required',
+            'nivel' => ['required',
+                        Rule::in(['Error', 'Warning', 'Debug']),
+                    ],
+            'eventos' => 'required',
+            'data' => 'required'
+            ], [
+                'in'=>'Informe um :attribute válido!'
+                ]);
+
         try{
+
+            $validator->validate();
+
             $data['usuario_id'] = auth('api')->user()->id;
-            $data['usuario_name'] = auth('api')->user()->name;
-            $data['status'] = 'ativo';
-            $data['data'] = date('Y-m-d');
 
             $erro = $this->erro->create($data);
 
@@ -57,8 +64,8 @@ class ErroController extends Controller
         } catch (\Exception $e) {
             return response()->json( [
                 'Erro' => 'Não foi possível cadastrar o log de erro.',
-                'Msg' => 'Verifique os dados e tente novamente!'
-            ], 400);
+                'Msg' => $validator->errors()->all()[0]
+            ], 422);
         }
     }
 
@@ -78,8 +85,7 @@ class ErroController extends Controller
             ], 200);
 
         } catch (\Exception $e) {
-            return response()->json(['Erro' => 'Log não existe ou pertence a outro usuário!'
-            ], 404);
+            return response()->json(['Erro' => 'Log não encontrado!']);
         }
     }
 
@@ -105,10 +111,7 @@ class ErroController extends Controller
             ], 200);
 
         } catch (\Exception $e) {
-            return response()->json([
-                'Erro' => 'Erro ao atualizar: Log não existe ou pertence a outro usuário!',
-                'Msg' => 'Verifique os dados e tente novamente!'
-            ], 400);
+            return response()->json(['Erro' => 'Log não encontrado ou erro ao atualizar, verifique os dados e tente novamente!']);
         }
     }
 
@@ -125,9 +128,8 @@ class ErroController extends Controller
             ], 200);
 
         } catch (\Exception $e) {
-            return response()->json([
-                'Erro' => 'Log não encontrado ou pertence a outro usuário!'
-            ], 400);
+            return response()->json(['Erro' => 'Log não encontrado!']);
+
         }
     }
 }

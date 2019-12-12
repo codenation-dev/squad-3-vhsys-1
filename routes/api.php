@@ -28,14 +28,15 @@ Route::namespace('Api')->group(function() {
     Route::group(['middleware' => ['jwt.auth']], function (){
 
         //Rotas para os Logs de Erros
-        Route::name('')->group(function() {
+        Route::prefix('')->group(function() {
             Route::resource('erros', 'ErroController');
         });
 
 
         // Rotas para os usuários
-        Route::name('')->group(function() {
+        Route::prefix('')->group(function() {
             Route::resource('users', 'UserController');
+
         });
     });
 

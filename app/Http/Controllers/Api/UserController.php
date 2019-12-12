@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
     private $user;
 
     public function __construct(User $user)
@@ -40,10 +41,11 @@ class UserController extends Controller
         if(!$request->has('password') || !$request->get('password')) {
             return response()->json([
                 'Erro' => 'É necessário informar uma senha!'
-            ], 400);
+            ]);
         }
 
         try{
+
             $data['password'] = bcrypt($data['password']);
             $user = $this->user->create($data);
 
@@ -54,8 +56,7 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return response()->json( [
                 'Erro' => 'Erro ao cadastrar o usuário, verifique os dados e tente novamente!',
-                'Msg' => 'Talvez o email informado já esteja cadastrado!'
-            ], 400);
+                'Msg' => 'Talvez esse email já esteja cadastrado!']);
         }
     }
 
@@ -75,9 +76,7 @@ class UserController extends Controller
             ], 200);
 
         } catch (\Exception $e) {
-            return response()->json([
-                'Erro' => 'Usuário não encontrado!'
-            ], 404);
+            return response()->json(['Erro' => 'Usuário não encontrado!']);
         }
     }
 
@@ -110,10 +109,7 @@ class UserController extends Controller
             ], 200);
 
         } catch (\Exception $e) {
-            return response()->json([
-                'Erro' => 'Usuário não encontrado ou erro ao atualizar usuário!',
-                'Msg' => 'Verifique os dados e tente novamente!'
-            ], 404);
+            return response()->json(['Erro' => 'Usuário não encontrado ou erro ao atualizar usuário, verifique os dados e tente novamente!']);
         }
     }
 
@@ -127,13 +123,7 @@ class UserController extends Controller
     {
         try{
             $user = $this->user->findOrFail($id);
-            if($user['admin'] === 0) {
-                $user->delete();
-            } else {
-                return response()->json([
-                    'Erro' => 'Usuário é administrador, não pode ser excluído!'
-                ], 401);
-            }
+            $user->delete();
 
             return response()->json([
                 'data' => [
@@ -142,9 +132,7 @@ class UserController extends Controller
             ], 200);
 
         } catch (\Exception $e) {
-            return response()->json([
-                'Erro' => 'Usuário não encontrado!'
-            ], 404);
+            return response()->json(['Erro' => 'Usuário não encontrado!']);
         }
     }
 }
