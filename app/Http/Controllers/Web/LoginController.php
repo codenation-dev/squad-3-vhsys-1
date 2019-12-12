@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {

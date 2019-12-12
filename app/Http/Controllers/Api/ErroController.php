@@ -60,9 +60,6 @@ class ErroController extends Controller
       ['status', '=', 'ativo']
     ];
 
-    //if ($usuarios ->admin != 1)
-      //array_push($filters, ["usuario_id", '=', $usuarios->id]);
-
       $order = 'eventos';
       $direcao = 'desc';
       if ($ordenacao !== null)
@@ -86,7 +83,7 @@ class ErroController extends Controller
 
     $erros = Erro::where($filters)
       ->orderBy($order, $direcao);
-    
+
 
     return response()->json($erros->get(), 200 );
   }
@@ -116,7 +113,7 @@ class ErroController extends Controller
       if ($erro === null)
       {
         $data['usuario_name'] = auth('api')->user()->name;
-        $data['status'] = 'Ativo';             
+        $data['status'] = 'Ativo';
         $data['id_frequencia'] = $idFrequencia;
         $data['eventos'] = 1;
 

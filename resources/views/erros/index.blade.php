@@ -1,7 +1,7 @@
 
 @extends('layouts.site')
 
-@section('title', 'Central de Erros - Home')
+@section('title', 'Central de Erros - Logs')
 
 @section('content')
 
@@ -62,7 +62,7 @@
             <label for="search">Buscar</label>
           </div>
           <div class="input-field col m1 s2 l1" style="padding: 0 !important;">
-            <i class="medium material-icons" style="cursor: pointer" onClick="submitform()">search</i> </div>
+            <i class="medium material-icons" style="cursor: pointer" onClick="submitform()">search</i>
           </div>
         </form>
         <div>
@@ -102,8 +102,8 @@
 
                     @if(Auth::user()->admin == 1)
                       <td>
-                        <a class="btn blue-grey lighten-1" style="margin-bottom:5px; font-size: .70rem;" onclick="return confirm('Você realmente deseja arquivar esse log?')" href="{{ route('erros.editar', $registro->id) }}">Arquivar</a>
-                        <a class="btn blue-grey darken-3" style="margin-bottom:5px; font-size: .70rem;" onclick="return confirm('Você realmente deseja deletar esse log?')" href="{{ route('erros.deletar', $registro->id) }}">Deletar</a>
+                        <a class="btn blue-grey lighten-1" style="margin-bottom:5px; font-size: .70rem;" onclick="return confirm('Você realmente deseja arquivar esse log?')" href="{{ route('erros.editar', $registro->id) }}"><i class="left material-icons">archive</i> Arquivar</a>
+                        <a class="btn blue-grey darken-3" style="margin-bottom:5px; font-size: .70rem;" onclick="return confirm('Você realmente deseja deletar esse log?')" href="{{ route('erros.deletar', $registro->id) }}"><i class="left large material-icons">delete</i> Deletar</a>
                       </td>
                     @endif
                   </tr>

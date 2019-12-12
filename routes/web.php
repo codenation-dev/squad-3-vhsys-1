@@ -11,7 +11,6 @@
 |
 */
 
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,9 +20,6 @@ Route::get('/login', ['as' => 'login', 'uses' => 'Api\LoginController@index']);
 Route::post('/login/entrar', ['as' => 'login.entrar', 'uses' => 'Web\LoginController@login']);
 Route::get('/logout', ['as' => 'login.sair', 'uses' => 'Web\LoginController@logout']);
 
-Route::post('/register', ['as' => 'register', 'uses' => 'Auth\RegisterController@register']);
-Route::get('/register', ['uses' => 'Auth\RegisterController@showRegistrationForm']);
-
 Route::group(['middleware' => 'auth'], function () {
   Route::namespace('Web')->group(function() {
     Route::prefix('erros')->group(function() {
@@ -31,11 +27,6 @@ Route::group(['middleware' => 'auth'], function () {
       Route::get('/arquivar/{id}', ['as' => 'erros.editar', 'uses' => 'ErroController@arquivar']);
       Route::get('/deletar/{id}', ['as' => 'erros.deletar', 'uses' => 'ErroController@deletar']);
       Route::get('/detalhes/{id}', ['as' => 'erros.detalhes', 'uses' => 'ErroController@detalhes']);
-    });
-  });
-  Route::namespace('Auth')->group(function() {
-    Route::prefix('user')->group(function() {
-      Route::post('/cadastrar', ['uses' => 'RegisterController@registerUser']);
     });
   });
 });
