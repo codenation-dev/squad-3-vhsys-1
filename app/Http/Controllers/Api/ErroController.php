@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Erro;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Erro;
+use Illuminate\Validation\Rule;
 
 class ErroController extends Controller
 {
@@ -80,7 +81,6 @@ class ErroController extends Controller
     if ($origem !== null)
         array_push($filters, ["origem", 'LIKE', '%'.$origem.'%']);
 
-
     $erros = Erro::where($filters)
       ->orderBy($order, $direcao);
 
@@ -98,8 +98,20 @@ class ErroController extends Controller
   {
     $data = $request->all();
 
+    $validator = \Validator::make($request->all(), [
+      'titulo' => 'required',
+      'descricao' => 'required',
+      'nivel' => ['required', Rule::in(['error', 'warning', 'debug']), ],
+      'ambiente' => ['required', Rule::in(['1', '2', '3']), ],
+      'origem' => 'required'
+      ], [
+          'in'=>'Informe um :attribute válido!'
+          ]);
+
     try
     {
+      $validator->validate();
+
       $data['usuario_id'] = auth('api')->user()->id;
       $data['data'] = date('Y-m-d'); 
 
@@ -136,8 +148,7 @@ class ErroController extends Controller
     } catch (\Exception $e) {
       return response()->json( [
           'Erro' => 'Não foi possível cadastrar o log de erro.',
-          'Msg' => 'Verifique os dados e tente novamente!',
-          'Exp' => $e->getMessage()
+          'Msg' => $validator->errors()->all()[0]
       ], 400);
     }
   }
