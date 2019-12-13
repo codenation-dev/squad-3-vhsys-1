@@ -85,7 +85,7 @@ class ErroController extends Controller
       ->orderBy($order, $direcao);
 
 
-    return response()->json($erros->get(), 200 );
+    return response()->json($erros->get(), 200);
   }
 
   /**
