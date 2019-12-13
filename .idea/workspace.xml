@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b69f8ad-e4e1-4679-b5c4-4f0115964ff4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ErroController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ErroController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,14 +78,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ErroController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="80" column="66" lean-forward="true" selection-start-line="80" selection-start-column="66" selection-end-line="80" selection-end-column="66" />
+            <state relative-caret-position="180">
+              <caret line="81" column="66" lean-forward="true" selection-start-line="81" selection-start-column="66" selection-end-line="81" selection-end-column="66" />
               <folding>
-                <element signature="e#44#80#0#PHP" expanded="true" />
+                <element signature="e#44#57#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -161,7 +170,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/Controller.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php" />
         <option value="$PROJECT_DIR$/config/auth.php" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/resources/views/erros/_form.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Web/UserController.php" />
@@ -188,6 +196,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ErroController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Web/ErroController.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -463,15 +472,16 @@
       <workItem from="1576175009705" duration="3456000" />
       <workItem from="1576183966302" duration="3060000" />
       <workItem from="1576241515835" duration="599000" />
-      <workItem from="1576265918884" duration="1681000" />
+      <workItem from="1576265918884" duration="2156000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="319256000" />
+    <option name="totallyTimeSpent" value="319731000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24460916" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -488,7 +498,7 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32944608" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.5728863" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.22886297" />
       <window_info anchor="bottom" id="PHP-CGI Server" order="12" />
       <window_info anchor="bottom" id="TypeScript" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -525,13 +535,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_classmap.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="25" column="94" selection-start-line="25" selection-start-column="94" selection-end-line="25" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/storage/framework/views/77ea2e5731a86a7f298b9b1ceca03c24f48a4860.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="366">
@@ -829,11 +832,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ErroController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="80" column="66" lean-forward="true" selection-start-line="80" selection-start-column="66" selection-end-line="80" selection-end-column="66" />
+        <state relative-caret-position="180">
+          <caret line="81" column="66" lean-forward="true" selection-start-line="81" selection-start-column="66" selection-end-line="81" selection-end-column="66" />
           <folding>
-            <element signature="e#44#80#0#PHP" expanded="true" />
+            <element signature="e#44#57#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
         </state>
       </provider>
     </entry>
