@@ -1,0 +1,30 @@
+
+
+Code Coverage Report:      
+  2019-12-13 19:00:56      
+                           
+ Summary:                  
+  Classes: 23.81% (5/21)   
+  Methods: 28.81% (17/59)  
+  Lines:   30.30% (100/330)
+
+\App::App\User
+  Methods:  66.67% ( 2/ 3)   Lines:  66.67% (  2/  3)
+\App\Console::App\Console\Kernel
+  Methods:  50.00% ( 1/ 2)   Lines:  75.00% (  3/  4)
+\App\Http\Controllers::App\Http\Controllers\HomeController
+  Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  2/  2)
+\App\Http\Controllers\Api::App\Http\Controllers\Api\ErroController
+  Methods:  28.57% ( 2/ 7)   Lines:  44.55% ( 49/110)
+\App\Http\Controllers\Api::App\Http\Controllers\Api\LoginController
+  Methods:  25.00% ( 1/ 4)   Lines:  52.38% ( 11/ 21)
+\App\Http\Controllers\Api::App\Http\Controllers\Api\UserController
+  Methods:  16.67% ( 1/ 6)   Lines:  25.49% ( 13/ 51)
+\App\Providers::App\Providers\AppServiceProvider
+  Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  2/  2)
+\App\Providers::App\Providers\AuthServiceProvider
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  2/  2)
+\App\Providers::App\Providers\EventServiceProvider
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  2/  2)
+\App\Providers::App\Providers\RouteServiceProvider
+  Methods: 100.00% ( 4/ 4)   Lines: 100.00% ( 14/ 14)
