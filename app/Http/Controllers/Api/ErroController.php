@@ -61,6 +61,9 @@ class ErroController extends Controller
       ['status', '=', 'ativo']
     ];
 
+    if ($ambiente !== null)
+      array_push($filters, ["ambiente", '=', $ambiente]);
+
       $order = 'eventos';
       $direcao = 'desc';
       if ($ordenacao !== null)
