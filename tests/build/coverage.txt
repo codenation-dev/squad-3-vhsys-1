@@ -1,12 +1,12 @@
 
 
 Code Coverage Report:      
-  2019-12-13 23:28:56      
+  2019-12-14 00:01:21      
                            
  Summary:                  
   Classes: 33.33% (7/21)   
-  Methods: 38.98% (23/59)  
-  Lines:   49.55% (165/333)
+  Methods: 44.07% (26/59)  
+  Lines:   54.65% (182/333)
 
 \App::App\User
   Methods: 100.00% ( 3/ 3)   Lines: 100.00% (  3/  3)
@@ -17,9 +17,9 @@ Code Coverage Report:
 \App\Http\Controllers\Api::App\Http\Controllers\Api\ErroController
   Methods: 100.00% ( 7/ 7)   Lines: 100.00% (113/113)
 \App\Http\Controllers\Api::App\Http\Controllers\Api\LoginController
-  Methods:  25.00% ( 1/ 4)   Lines:  52.38% ( 11/ 21)
+  Methods:  75.00% ( 3/ 4)   Lines:  95.24% ( 20/ 21)
 \App\Http\Controllers\Api::App\Http\Controllers\Api\UserController
-  Methods:  16.67% ( 1/ 6)   Lines:  25.49% ( 13/ 51)
+  Methods:  33.33% ( 2/ 6)   Lines:  41.18% ( 21/ 51)
 \App\Providers::App\Providers\AppServiceProvider
   Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  2/  2)
 \App\Providers::App\Providers\AuthServiceProvider

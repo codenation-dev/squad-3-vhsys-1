@@ -33,18 +33,6 @@ class UserTest extends TestCase
         $this->assertInstanceOf(\App\User::class, $user);
     }
 
-
-/*
-$u = new \App\User();
-    //     $u->name = "Nome";
-    //     $u->email = "teste@teste.com";
-    //     $u->admin = '1';
-    //     $u->password = '$2y$10$YPDvYV/jAuxxJlWUPaOBT.2qBbPpspLpfqNqrxVS6P.FrSh/gY/by';
-    //     $u->remember_token = Str::random(10);
-    //     $u->save();
-*/
-
-
     public function testRequisicaoValida():void
     {
         $response = $this->withHeaders(['Authorization' => 'bearer'.$this->token])
@@ -68,5 +56,49 @@ $u = new \App\User();
         ]);
 
         $response->assertStatus(400);
+    }
+
+    public function testRequisicaoSemEmail():void
+    {
+        $response = $this->withHeaders(['Authorization' => 'bearer'.$this->token])
+                    ->post(route('user.save'), [
+                        'name' => 'Nome',
+                        'admin' => '1',
+                        'password' => '123456'
+        ]);
+
+        $response->assertStatus(400);
+    }
+
+    public function testBuscaUsuario():void
+    {
+        $user = factory(\App\User::class)->create();
+
+        $server = $this->transformHeadersToServerVars(['Authorization' => 'bearer'.$this->token]);
+        $cookies = $this->prepareCookiesForRequest();
+        $response = $this->call(
+            'GET', 
+            route('user.show', ["id" => $user->id]), 
+            [], 
+            $cookies, 
+            [], 
+            $server);
+
+        $response->assertStatus(200);
+    }
+
+    public function testBuscaUsuarioInvalido():void
+    {
+        $server = $this->transformHeadersToServerVars(['Authorization' => 'bearer'.$this->token]);
+        $cookies = $this->prepareCookiesForRequest();
+        $response = $this->call(
+            'GET', 
+            route('user.show', ["id" => "0"]), 
+            [], 
+            $cookies, 
+            [], 
+            $server);
+
+        $response->assertStatus(404);
     }
 }

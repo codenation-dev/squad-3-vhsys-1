@@ -27,7 +27,7 @@ class LoginController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-    public function login(Request $request)
+  public function login(Request $request)
   {
     $credentials = $request->all(['email', 'password']);
 
