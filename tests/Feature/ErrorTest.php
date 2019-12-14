@@ -14,10 +14,12 @@ class ErrorTest extends TestCase
 
     protected $token;
     protected $user;
+    protected $log;
 
     protected function setUp() : void
     {
         parent::setUp();
+
         $userFake = factory(\App\User::class)->create();
         $this->user = [
             'email' => $userFake->email,
@@ -26,7 +28,16 @@ class ErrorTest extends TestCase
 
         $token = $this->post(route('api.login'), $this->user)->getContent();
         $this->token = json_decode($token)->token;
+
+        $this->log = factory(\App\Erro::class)->create();
     }
+
+    public function testIsErro():void
+    {
+        $log = factory(\App\Erro::class)->create();
+        $this->assertInstanceOf(\App\Erro::class, $log);
+    }
+
 
     // public function testDatabase()
     // {
@@ -66,9 +77,136 @@ class ErrorTest extends TestCase
                          ->post(route('erros.save'), [
                         'titulo' => 'Erro 23',
                         'descricao' => 'Descrição do erro',
-                        'nivel' => 'errorr',
+                        'nivel' => 'errorr'
         ]);
 
         $response->assertStatus(400);
     }
+
+    public function testPesquisaErroPorStatus():void 
+    {
+        $response = $this->withHeaders(['Authorization' => 'bearer'.$this->token])
+            ->get(route('erros.index'));
+
+        $response->assertStatus(200);
+    }
+    
+
+    public function testPesquisaErroPorAmbiente():void
+    {
+        $server = $this->transformHeadersToServerVars(['Authorization' => 'bearer'.$this->token]);
+        $cookies = $this->prepareCookiesForRequest();
+        $response = $this->call(
+            'GET', 
+            route('erros.index'), 
+            ["ambiente" => $this->log->ambiente], 
+            $cookies, 
+            [], 
+            $server);
+
+        $response->assertStatus(200);
+    }
+
+    public function testPesquisaErroPorNivel():void
+    {
+        $server = $this->transformHeadersToServerVars(['Authorization' => 'bearer'.$this->token]);
+        $cookies = $this->prepareCookiesForRequest();
+        $response = $this->call(
+            'GET', 
+            route('erros.index'), 
+            ["nivel" => $this->log->nivel], 
+            $cookies, 
+            [], 
+            $server);
+
+        $response->assertStatus(200);
+    }
+
+    public function testPesquisaErroPorTitulo():void
+    {
+        $server = $this->transformHeadersToServerVars(['Authorization' => 'bearer'.$this->token]);
+        $cookies = $this->prepareCookiesForRequest();
+        $response = $this->call(
+            'GET', 
+            route('erros.index'), 
+            ["titulo" => $this->log->titulo], 
+            $cookies, 
+            [], 
+            $server);
+
+        $response->assertStatus(200);
+    }
+
+    public function testPesquisaErroPorDescricao():void
+    {
+        $server = $this->transformHeadersToServerVars(['Authorization' => 'bearer'.$this->token]);
+        $cookies = $this->prepareCookiesForRequest();
+        $response = $this->call(
+            'GET', 
+            route('erros.index'), 
+            ["descricao" => $this->log->descricao], 
+            $cookies, 
+            [], 
+            $server);
+
+        $response->assertStatus(200);
+    }
+
+    public function testPesquisaErroPorOrigem():void
+    {
+        $server = $this->transformHeadersToServerVars(['Authorization' => 'bearer'.$this->token]);
+        $cookies = $this->prepareCookiesForRequest();
+        $response = $this->call(
+            'GET', 
+            route('erros.index'), 
+            ["origem" => $this->log->origem], 
+            $cookies, 
+            [], 
+            $server);
+
+        $response->assertStatus(200);
+    }
+
+    public function testPesquisaOrdenadaPorNivel():void
+    {
+        $server = $this->transformHeadersToServerVars(['Authorization' => 'bearer'.$this->token]);
+        $cookies = $this->prepareCookiesForRequest();
+        $response = $this->call(
+            'GET', 
+            route('erros.index'), 
+            ["order" => "1"], 
+            $cookies, 
+            [], 
+            $server);
+
+        $response->assertStatus(200);
+    }
+
+    public function testAtualizaQuantidade():void
+    {
+        $response = $this->withHeaders(['Authorization' => 'bearer'.$this->token])
+            ->post(route('erros.save'), [
+                'titulo' => $this->log->titulo,
+                'descricao' => $this->log->descricao,
+                'nivel' => $this->log->nivel,
+                'ambiente' => $this->log->ambiente,
+                'origem' => $this->log->origem,
+        ]);
+
+        $response->assertStatus(200);
+
+        $response = $this->withHeaders(['Authorization' => 'bearer'.$this->token])
+            ->post(route('erros.save'), [
+                'titulo' => $this->log->titulo,
+                'descricao' => $this->log->descricao,
+                'nivel' => $this->log->nivel,
+                'ambiente' => $this->log->ambiente,
+                'origem' => $this->log->origem,
+        ]);
+
+        $response->assertStatus(200);
+
+        $this->assertDatabaseHas('erros', ['eventos' => '2']);
+    }
+
 }
