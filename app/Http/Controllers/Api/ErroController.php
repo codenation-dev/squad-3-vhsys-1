@@ -164,6 +164,8 @@ class ErroController extends Controller
    */
   public function show($id)
   {
+    $userId  = auth('api')->user()->id;
+
     try{
       $erro = auth('api')->user()->erros()->findOrFail($id);
       return response()->json([
@@ -171,8 +173,10 @@ class ErroController extends Controller
       ], 200);
 
     } catch (\Exception $e) {
-      return response()->json(['Erro' => 'Log com ID ' . $id . ' não existe ou pertence a outro usuário!'
-      ], 404);
+      return response()->json(
+        ['Erro' => 'Log com ID ' . $id . ' não existe ou pertence a outro usuário!',
+        'msg'=> $e->getMessage()], 
+        404);
     }
   }
 
@@ -203,7 +207,7 @@ class ErroController extends Controller
       return response()->json( [
         'Erro' => 'Não foi possível arquivar o log de ID ' . $id . '!',
         'Msg' => 'Verifique o ID passado e novamente!'
-      ], 400);
+      ], 404);
     }
   }
 
@@ -225,7 +229,7 @@ class ErroController extends Controller
       return response()->json( [
           'Erro' => 'Não foi possível excluir o log de ID ' . $id  . '.',
           'Msg' => 'Verifique o ID passado e novamente!'
-      ], 400);
+      ], 404);
     }
   }
 

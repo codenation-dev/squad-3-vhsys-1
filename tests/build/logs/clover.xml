@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1576284673">
-  <project timestamp="1576284673">
+<coverage generated="1576290536">
+  <project timestamp="1576290536">
     <package name="App\Console">
       <file name="C:\xampp\htdocs\squad-3-vhsys-1-front\app\Console\Kernel.php">
         <class name="App\Console\Kernel" namespace="App\Console">
@@ -8,10 +8,10 @@
         </class>
         <line num="25" type="method" name="schedule" visibility="protected" complexity="1" crap="2.00" count="0"/>
         <line num="29" type="stmt" count="0"/>
-        <line num="36" type="method" name="commands" visibility="protected" complexity="1" crap="1" count="16"/>
-        <line num="38" type="stmt" count="16"/>
-        <line num="40" type="stmt" count="16"/>
-        <line num="41" type="stmt" count="16"/>
+        <line num="36" type="method" name="commands" visibility="protected" complexity="1" crap="1" count="23"/>
+        <line num="38" type="stmt" count="23"/>
+        <line num="40" type="stmt" count="23"/>
+        <line num="41" type="stmt" count="23"/>
         <metrics loc="42" ncloc="20" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="3" elements="6" coveredelements="4"/>
       </file>
     </package>
@@ -26,15 +26,15 @@
       </file>
       <file name="C:\xampp\htdocs\squad-3-vhsys-1-front\app\User.php">
         <class name="App\User" namespace="App">
-          <metrics complexity="3" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="2" elements="6" coveredelements="4"/>
+          <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="6" coveredelements="6"/>
         </class>
-        <line num="43" type="method" name="erros" visibility="public" complexity="1" crap="2.00" count="0"/>
-        <line num="45" type="stmt" count="0"/>
-        <line num="48" type="method" name="getJWTIdentifier" visibility="public" complexity="1" crap="1" count="14"/>
-        <line num="50" type="stmt" count="14"/>
-        <line num="53" type="method" name="getJWTCustomClaims" visibility="public" complexity="1" crap="1" count="14"/>
-        <line num="55" type="stmt" count="14"/>
-        <metrics loc="57" ncloc="42" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="2" elements="6" coveredelements="4"/>
+        <line num="43" type="method" name="erros" visibility="public" complexity="1" crap="1" count="7"/>
+        <line num="45" type="stmt" count="7"/>
+        <line num="48" type="method" name="getJWTIdentifier" visibility="public" complexity="1" crap="1" count="21"/>
+        <line num="50" type="stmt" count="21"/>
+        <line num="53" type="method" name="getJWTCustomClaims" visibility="public" complexity="1" crap="1" count="21"/>
+        <line num="55" type="stmt" count="21"/>
+        <metrics loc="57" ncloc="42" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="6" coveredelements="6"/>
       </file>
     </package>
     <package name="App\Exceptions">
@@ -53,12 +53,12 @@
     <package name="App\Http\Controllers\Api">
       <file name="C:\xampp\htdocs\squad-3-vhsys-1-front\app\Http\Controllers\Api\ErroController.php">
         <class name="App\Http\Controllers\Api\ErroController" namespace="App\Http\Controllers\Api">
-          <metrics complexity="26" methods="7" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="110" coveredstatements="78" elements="117" coveredelements="82"/>
+          <metrics complexity="26" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="113" coveredstatements="113" elements="120" coveredelements="120"/>
         </class>
-        <line num="17" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
-        <line num="19" type="stmt" count="10"/>
-        <line num="20" type="stmt" count="10"/>
-        <line num="21" type="stmt" count="10"/>
+        <line num="17" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="17"/>
+        <line num="19" type="stmt" count="17"/>
+        <line num="20" type="stmt" count="17"/>
+        <line num="21" type="stmt" count="17"/>
         <line num="23" type="method" name="ObterIdFrequencia" visibility="private" complexity="8" crap="8" count="2"/>
         <line num="25" type="stmt" count="2"/>
         <line num="26" type="stmt" count="2"/>
@@ -137,63 +137,66 @@
         <line num="153" type="stmt" count="1"/>
         <line num="154" type="stmt" count="1"/>
         <line num="155" type="stmt" count="1"/>
-        <line num="165" type="method" name="show" visibility="public" complexity="2" crap="6.00" count="0"/>
-        <line num="168" type="stmt" count="0"/>
-        <line num="169" type="stmt" count="0"/>
-        <line num="170" type="stmt" count="0"/>
-        <line num="171" type="stmt" count="0"/>
-        <line num="173" type="stmt" count="0"/>
-        <line num="174" type="stmt" count="0"/>
-        <line num="175" type="stmt" count="0"/>
-        <line num="185" type="method" name="store" visibility="public" complexity="3" crap="12.00" count="0"/>
-        <line num="188" type="stmt" count="0"/>
-        <line num="189" type="stmt" count="0"/>
-        <line num="190" type="stmt" count="0"/>
-        <line num="191" type="stmt" count="0"/>
-        <line num="193" type="stmt" count="0"/>
-        <line num="194" type="stmt" count="0"/>
-        <line num="195" type="stmt" count="0"/>
-        <line num="197" type="stmt" count="0"/>
-        <line num="198" type="stmt" count="0"/>
-        <line num="199" type="stmt" count="0"/>
-        <line num="202" type="stmt" count="0"/>
-        <line num="203" type="stmt" count="0"/>
-        <line num="204" type="stmt" count="0"/>
-        <line num="205" type="stmt" count="0"/>
-        <line num="206" type="stmt" count="0"/>
-        <line num="216" type="method" name="destroy" visibility="public" complexity="2" crap="6.00" count="0"/>
-        <line num="219" type="stmt" count="0"/>
-        <line num="220" type="stmt" count="0"/>
-        <line num="221" type="stmt" count="0"/>
-        <line num="222" type="stmt" count="0"/>
-        <line num="223" type="stmt" count="0"/>
-        <line num="224" type="stmt" count="0"/>
-        <line num="225" type="stmt" count="0"/>
-        <line num="226" type="stmt" count="0"/>
-        <line num="227" type="stmt" count="0"/>
-        <line num="228" type="stmt" count="0"/>
-        <metrics loc="232" ncloc="205" classes="1" methods="7" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="110" coveredstatements="78" elements="117" coveredelements="82"/>
+        <line num="165" type="method" name="show" visibility="public" complexity="2" crap="2" count="2"/>
+        <line num="167" type="stmt" count="2"/>
+        <line num="170" type="stmt" count="2"/>
+        <line num="171" type="stmt" count="1"/>
+        <line num="172" type="stmt" count="1"/>
+        <line num="173" type="stmt" count="1"/>
+        <line num="175" type="stmt" count="1"/>
+        <line num="176" type="stmt" count="1"/>
+        <line num="177" type="stmt" count="1"/>
+        <line num="178" type="stmt" count="1"/>
+        <line num="179" type="stmt" count="1"/>
+        <line num="189" type="method" name="store" visibility="public" complexity="3" crap="3" count="3"/>
+        <line num="192" type="stmt" count="3"/>
+        <line num="193" type="stmt" count="2"/>
+        <line num="194" type="stmt" count="2"/>
+        <line num="195" type="stmt" count="2"/>
+        <line num="197" type="stmt" count="2"/>
+        <line num="198" type="stmt" count="2"/>
+        <line num="199" type="stmt" count="2"/>
+        <line num="201" type="stmt" count="1"/>
+        <line num="202" type="stmt" count="1"/>
+        <line num="203" type="stmt" count="1"/>
+        <line num="206" type="stmt" count="1"/>
+        <line num="207" type="stmt" count="1"/>
+        <line num="208" type="stmt" count="1"/>
+        <line num="209" type="stmt" count="1"/>
+        <line num="210" type="stmt" count="1"/>
+        <line num="220" type="method" name="destroy" visibility="public" complexity="2" crap="2" count="2"/>
+        <line num="223" type="stmt" count="2"/>
+        <line num="224" type="stmt" count="1"/>
+        <line num="225" type="stmt" count="1"/>
+        <line num="226" type="stmt" count="1"/>
+        <line num="227" type="stmt" count="1"/>
+        <line num="228" type="stmt" count="1"/>
+        <line num="229" type="stmt" count="1"/>
+        <line num="230" type="stmt" count="1"/>
+        <line num="231" type="stmt" count="1"/>
+        <line num="232" type="stmt" count="1"/>
+        <metrics loc="236" ncloc="209" classes="1" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="113" coveredstatements="113" elements="120" coveredelements="120"/>
       </file>
       <file name="C:\xampp\htdocs\squad-3-vhsys-1-front\app\Http\Controllers\Api\LoginController.php">
         <class name="App\Http\Controllers\Api\LoginController" namespace="App\Http\Controllers\Api">
           <metrics complexity="6" methods="4" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="11" elements="25" coveredelements="12"/>
         </class>
-        <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="14"/>
-        <line num="16" type="stmt" count="14"/>
-        <line num="17" type="stmt" count="14"/>
+        <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="21"/>
+        <line num="16" type="stmt" count="21"/>
+        <line num="17" type="stmt" count="21"/>
         <line num="19" type="method" name="index" visibility="public" complexity="1" crap="2.00" count="0"/>
         <line num="21" type="stmt" count="0"/>
-        <line num="30" type="method" name="login" visibility="public" complexity="2" crap="2.00" count="14"/>
-        <line num="32" type="stmt" count="14"/>
-        <line num="34" type="stmt" count="14"/>
-        <line num="35" type="stmt" count="14"/>
-        <line num="37" type="stmt" count="14"/>
-        <line num="39" type="stmt" count="14"/>
+        <line num="30" type="method" name="login" visibility="public" complexity="2" crap="2.00" count="21"/>
+        <line num="32" type="stmt" count="21"/>
+        <line num="34" type="stmt" count="21"/>
+        <line num="35" type="stmt" count="21"/>
+        <line num="37" type="stmt" count="21"/>
+        <line num="39" type="stmt" count="21"/>
         <line num="40" type="stmt" count="0"/>
-        <line num="43" type="stmt" count="14"/>
-        <line num="44" type="stmt" count="14"/>
-        <line num="45" type="stmt" count="14"/>
-        <line num="46" type="stmt" count="14"/>
+        <line num="43" type="stmt" count="21"/>
+        <line num="44" type="stmt" count="21"/>
+        <line num="45" type="stmt" count="21"/>
+        <line num="46" type="stmt" count="21"/>
         <line num="55" type="method" name="logout" visibility="public" complexity="2" crap="6.00" count="0"/>
         <line num="57" type="stmt" count="0"/>
         <line num="58" type="stmt" count="0"/>
@@ -531,19 +534,19 @@
         <class name="App\Providers\AppServiceProvider" namespace="App\Providers">
           <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
         </class>
-        <line num="14" type="method" name="register" visibility="public" complexity="1" crap="1" count="16"/>
-        <line num="17" type="stmt" count="16"/>
-        <line num="24" type="method" name="boot" visibility="public" complexity="1" crap="1" count="16"/>
-        <line num="27" type="stmt" count="16"/>
+        <line num="14" type="method" name="register" visibility="public" complexity="1" crap="1" count="23"/>
+        <line num="17" type="stmt" count="23"/>
+        <line num="24" type="method" name="boot" visibility="public" complexity="1" crap="1" count="23"/>
+        <line num="27" type="stmt" count="23"/>
         <metrics loc="28" ncloc="14" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
       </file>
       <file name="C:\xampp\htdocs\squad-3-vhsys-1-front\app\Providers\AuthServiceProvider.php">
         <class name="App\Providers\AuthServiceProvider" namespace="App\Providers">
           <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
         </class>
-        <line num="24" type="method" name="boot" visibility="public" complexity="1" crap="1" count="16"/>
-        <line num="26" type="stmt" count="16"/>
-        <line num="29" type="stmt" count="16"/>
+        <line num="24" type="method" name="boot" visibility="public" complexity="1" crap="1" count="23"/>
+        <line num="26" type="stmt" count="23"/>
+        <line num="29" type="stmt" count="23"/>
         <metrics loc="30" ncloc="16" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
       </file>
       <file name="C:\xampp\htdocs\squad-3-vhsys-1-front\app\Providers\BroadcastServiceProvider.php">
@@ -560,36 +563,36 @@
         <class name="App\Providers\EventServiceProvider" namespace="App\Providers">
           <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
         </class>
-        <line num="28" type="method" name="boot" visibility="public" complexity="1" crap="1" count="16"/>
-        <line num="30" type="stmt" count="16"/>
-        <line num="33" type="stmt" count="16"/>
+        <line num="28" type="method" name="boot" visibility="public" complexity="1" crap="1" count="23"/>
+        <line num="30" type="stmt" count="23"/>
+        <line num="33" type="stmt" count="23"/>
         <metrics loc="34" ncloc="22" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
       </file>
       <file name="C:\xampp\htdocs\squad-3-vhsys-1-front\app\Providers\RouteServiceProvider.php">
         <class name="App\Providers\RouteServiceProvider" namespace="App\Providers">
           <metrics complexity="4" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="18" coveredelements="18"/>
         </class>
-        <line num="24" type="method" name="boot" visibility="public" complexity="1" crap="1" count="16"/>
-        <line num="28" type="stmt" count="16"/>
-        <line num="29" type="stmt" count="16"/>
-        <line num="36" type="method" name="map" visibility="public" complexity="1" crap="1" count="16"/>
-        <line num="38" type="stmt" count="16"/>
-        <line num="40" type="stmt" count="16"/>
-        <line num="43" type="stmt" count="16"/>
-        <line num="52" type="method" name="mapWebRoutes" visibility="protected" complexity="1" crap="1" count="16"/>
-        <line num="54" type="stmt" count="16"/>
-        <line num="55" type="stmt" count="16"/>
-        <line num="56" type="stmt" count="16"/>
-        <line num="57" type="stmt" count="16"/>
-        <line num="66" type="method" name="mapApiRoutes" visibility="protected" complexity="1" crap="1" count="16"/>
-        <line num="68" type="stmt" count="16"/>
-        <line num="69" type="stmt" count="16"/>
-        <line num="70" type="stmt" count="16"/>
-        <line num="71" type="stmt" count="16"/>
-        <line num="72" type="stmt" count="16"/>
+        <line num="24" type="method" name="boot" visibility="public" complexity="1" crap="1" count="23"/>
+        <line num="28" type="stmt" count="23"/>
+        <line num="29" type="stmt" count="23"/>
+        <line num="36" type="method" name="map" visibility="public" complexity="1" crap="1" count="23"/>
+        <line num="38" type="stmt" count="23"/>
+        <line num="40" type="stmt" count="23"/>
+        <line num="43" type="stmt" count="23"/>
+        <line num="52" type="method" name="mapWebRoutes" visibility="protected" complexity="1" crap="1" count="23"/>
+        <line num="54" type="stmt" count="23"/>
+        <line num="55" type="stmt" count="23"/>
+        <line num="56" type="stmt" count="23"/>
+        <line num="57" type="stmt" count="23"/>
+        <line num="66" type="method" name="mapApiRoutes" visibility="protected" complexity="1" crap="1" count="23"/>
+        <line num="68" type="stmt" count="23"/>
+        <line num="69" type="stmt" count="23"/>
+        <line num="70" type="stmt" count="23"/>
+        <line num="71" type="stmt" count="23"/>
+        <line num="72" type="stmt" count="23"/>
         <metrics loc="73" ncloc="38" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="18" coveredelements="18"/>
       </file>
     </package>
-    <metrics files="30" loc="1527" ncloc="1097" classes="21" methods="59" coveredmethods="19" conditionals="0" coveredconditionals="0" statements="330" coveredstatements="129" elements="389" coveredelements="148"/>
+    <metrics files="30" loc="1531" ncloc="1101" classes="21" methods="59" coveredmethods="23" conditionals="0" coveredconditionals="0" statements="333" coveredstatements="165" elements="392" coveredelements="188"/>
   </project>
 </coverage>

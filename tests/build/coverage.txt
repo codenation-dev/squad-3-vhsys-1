@@ -1,21 +1,21 @@
 
 
 Code Coverage Report:      
-  2019-12-13 21:51:13      
+  2019-12-13 23:28:56      
                            
  Summary:                  
-  Classes: 23.81% (5/21)   
-  Methods: 32.20% (19/59)  
-  Lines:   39.09% (129/330)
+  Classes: 33.33% (7/21)   
+  Methods: 38.98% (23/59)  
+  Lines:   49.55% (165/333)
 
 \App::App\User
-  Methods:  66.67% ( 2/ 3)   Lines:  66.67% (  2/  3)
+  Methods: 100.00% ( 3/ 3)   Lines: 100.00% (  3/  3)
 \App\Console::App\Console\Kernel
   Methods:  50.00% ( 1/ 2)   Lines:  75.00% (  3/  4)
 \App\Http\Controllers::App\Http\Controllers\HomeController
   Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  2/  2)
 \App\Http\Controllers\Api::App\Http\Controllers\Api\ErroController
-  Methods:  57.14% ( 4/ 7)   Lines:  70.91% ( 78/110)
+  Methods: 100.00% ( 7/ 7)   Lines: 100.00% (113/113)
 \App\Http\Controllers\Api::App\Http\Controllers\Api\LoginController
   Methods:  25.00% ( 1/ 4)   Lines:  52.38% ( 11/ 21)
 \App\Http\Controllers\Api::App\Http\Controllers\Api\UserController

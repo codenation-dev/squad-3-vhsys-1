@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="" tests="16" assertions="18" errors="0" warnings="0" failures="0" skipped="0" time="103.886158">
-    <testsuite name="Unit" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.562994">
-      <testsuite name="Tests\Unit\ExampleTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Unit\ExampleTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.562994">
-        <testcase name="testBasicTest" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Unit\ExampleTest.php" line="15" assertions="1" time="0.562994"/>
+  <testsuite name="" tests="23" assertions="26" errors="0" warnings="0" failures="0" skipped="0" time="37.552244">
+    <testsuite name="Unit" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.492066">
+      <testsuite name="Tests\Unit\ExampleTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Unit\ExampleTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.492066">
+        <testcase name="testBasicTest" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Unit\ExampleTest.php" line="15" assertions="1" time="0.492066"/>
       </testsuite>
     </testsuite>
-    <testsuite name="Feature" tests="15" assertions="17" errors="0" warnings="0" failures="0" skipped="0" time="103.323164">
-      <testsuite name="Tests\Feature\ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" tests="11" assertions="13" errors="0" warnings="0" failures="0" skipped="0" time="97.288261">
-        <testcase name="testIsErro" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="35" assertions="1" time="2.361603"/>
-        <testcase name="testRequisicaoValida" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="58" assertions="1" time="2.012076"/>
-        <testcase name="testRequisicaoInvalida" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="74" assertions="1" time="1.891278"/>
-        <testcase name="testPesquisaErroPorStatus" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="86" assertions="1" time="1.992759"/>
-        <testcase name="testPesquisaErroPorAmbiente" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="95" assertions="1" time="1.974346"/>
-        <testcase name="testPesquisaErroPorNivel" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="110" assertions="1" time="1.844559"/>
-        <testcase name="testPesquisaErroPorTitulo" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="125" assertions="1" time="1.972799"/>
-        <testcase name="testPesquisaErroPorDescricao" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="140" assertions="1" time="1.868236"/>
-        <testcase name="testPesquisaErroPorOrigem" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="155" assertions="1" time="1.857132"/>
-        <testcase name="testPesquisaOrdenadaPorNivel" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="170" assertions="1" time="1.882778"/>
-        <testcase name="testAtualizaQuantidade" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="185" assertions="3" time="77.630695"/>
+    <testsuite name="Feature" tests="22" assertions="25" errors="0" warnings="0" failures="0" skipped="0" time="37.060178">
+      <testsuite name="Tests\Feature\ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" tests="18" assertions="21" errors="0" warnings="0" failures="0" skipped="0" time="31.844232">
+        <testcase name="testIsErro" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="35" assertions="1" time="2.132456"/>
+        <testcase name="testRequisicaoValida" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="58" assertions="1" time="1.694724"/>
+        <testcase name="testRequisicaoInvalida" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="74" assertions="1" time="1.675822"/>
+        <testcase name="testPesquisaErroPorStatus" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="86" assertions="1" time="1.723300"/>
+        <testcase name="testPesquisaErroPorAmbiente" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="95" assertions="1" time="1.673793"/>
+        <testcase name="testPesquisaErroPorNivel" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="110" assertions="1" time="1.643326"/>
+        <testcase name="testPesquisaErroPorTitulo" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="125" assertions="1" time="1.705416"/>
+        <testcase name="testPesquisaErroPorDescricao" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="140" assertions="1" time="1.628415"/>
+        <testcase name="testPesquisaErroPorOrigem" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="155" assertions="1" time="1.656164"/>
+        <testcase name="testPesquisaOrdenadaPorNivel" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="170" assertions="1" time="1.672756"/>
+        <testcase name="testAtualizarQuantidade" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="185" assertions="3" time="1.850340"/>
+        <testcase name="testBuscarErro" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="212" assertions="1" time="1.908336"/>
+        <testcase name="testBuscarErroInvalido" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="250" assertions="1" time="1.659887"/>
+        <testcase name="testArquivarErro" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="265" assertions="1" time="1.889862"/>
+        <testcase name="testArquivarErroJaArquivado" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="303" assertions="2" time="2.045407"/>
+        <testcase name="testArquivarErroInexistente" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="351" assertions="1" time="1.641045"/>
+        <testcase name="testApagarErro" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="367" assertions="1" time="1.993866"/>
+        <testcase name="testApagarErroInexistente" class="Tests\Feature\ErrorTest" classname="Tests.Feature.ErrorTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ErrorTest.php" line="405" assertions="1" time="1.649317"/>
       </testsuite>
-      <testsuite name="Tests\Feature\ExampleTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ExampleTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.507781">
-        <testcase name="testBasicTest" class="Tests\Feature\ExampleTest" classname="Tests.Feature.ExampleTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ExampleTest.php" line="15" assertions="1" time="0.507781"/>
+      <testsuite name="Tests\Feature\ExampleTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ExampleTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.421240">
+        <testcase name="testBasicTest" class="Tests\Feature\ExampleTest" classname="Tests.Feature.ExampleTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\ExampleTest.php" line="15" assertions="1" time="0.421240"/>
       </testsuite>
-      <testsuite name="Tests\Feature\UserTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\UserTest.php" tests="3" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="5.527122">
-        <testcase name="testIsUser" class="Tests\Feature\UserTest" classname="Tests.Feature.UserTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\UserTest.php" line="30" assertions="1" time="1.735154"/>
-        <testcase name="testRequisicaoValida" class="Tests\Feature\UserTest" classname="Tests.Feature.UserTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\UserTest.php" line="48" assertions="1" time="1.915382"/>
-        <testcase name="testRequisicaoInvalida" class="Tests\Feature\UserTest" classname="Tests.Feature.UserTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\UserTest.php" line="61" assertions="1" time="1.876586"/>
+      <testsuite name="Tests\Feature\UserTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\UserTest.php" tests="3" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="4.794706">
+        <testcase name="testIsUser" class="Tests\Feature\UserTest" classname="Tests.Feature.UserTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\UserTest.php" line="30" assertions="1" time="1.542939"/>
+        <testcase name="testRequisicaoValida" class="Tests\Feature\UserTest" classname="Tests.Feature.UserTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\UserTest.php" line="48" assertions="1" time="1.621518"/>
+        <testcase name="testRequisicaoInvalida" class="Tests\Feature\UserTest" classname="Tests.Feature.UserTest" file="C:\xampp\htdocs\squad-3-vhsys-1-front\tests\Feature\UserTest.php" line="61" assertions="1" time="1.630249"/>
       </testsuite>
     </testsuite>
   </testsuite>
